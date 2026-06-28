@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "TB_FUNCIONARIO")
 @Data
@@ -15,10 +17,15 @@ public class Funcionario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String nome;
+    private String cpf;
+    private String telefone;
+    private String email;
+    private LocalDate dataNascimento;
+    private LocalDate dataAdmissao;
+
     @Enumerated(EnumType.STRING)
     private CargoEnum cargo;
-
-    private String cpf;
 
     @Enumerated(EnumType.STRING)
     private StatusEnum status;

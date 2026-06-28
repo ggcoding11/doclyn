@@ -34,8 +34,13 @@ public class FuncionarioService {
     public Funcionario updateById(Long id, Funcionario funcionarioNovo) {
         Funcionario funcionarioAntigo = findById(id);
 
-        funcionarioAntigo.setCargo(funcionarioNovo.getCargo());
+        funcionarioAntigo.setNome(funcionarioNovo.getNome());
         funcionarioAntigo.setCpf(funcionarioNovo.getCpf());
+        funcionarioAntigo.setTelefone(funcionarioNovo.getTelefone());
+        funcionarioAntigo.setEmail(funcionarioNovo.getEmail());
+        funcionarioAntigo.setDataNascimento(funcionarioNovo.getDataNascimento());
+        funcionarioAntigo.setDataAdmissao(funcionarioNovo.getDataAdmissao());
+        funcionarioAntigo.setCargo(funcionarioNovo.getCargo());
         funcionarioAntigo.setStatus(funcionarioNovo.getStatus());
 
         return repository.save(funcionarioAntigo);

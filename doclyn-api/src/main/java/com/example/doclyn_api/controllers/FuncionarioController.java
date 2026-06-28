@@ -11,6 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@RequestMapping("/funcionarios")
 public class FuncionarioController {
     @Autowired
     private FuncionarioService service;
@@ -27,11 +28,13 @@ public class FuncionarioController {
 
     @PostMapping
     public ResponseEntity<Funcionario> save(@RequestBody Funcionario funcionario) {
+        Funcionario request = service.save(funcionario);
+
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
-                .path("/{id}").buildAndExpand(funcionario.getId()).toUri();
+                .path("/{id}").buildAndExpand(request.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(service.save(funcionario));
+        return ResponseEntity.created(uri).body(request);
     }
 
     @PutMapping("/{id}")
