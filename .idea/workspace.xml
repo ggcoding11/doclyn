@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1aa9cd73-5206-4d92-8422-df9db55a7161" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/controllers/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/dtos/LoginRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/dtos/LoginResponseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/dtos/RegisterRequestDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/enums/UserRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/models/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/repositories/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/security/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/security/SecurityFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/services/TokenService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doclyn-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doclyn-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doclyn-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/doclyn-api/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="40" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="Record" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="3.683251690147023E-42" />
+      <entry key="MS500" value="5.1670930129713665E-9" />
+      <entry key="S2" value="0.008478356900180012" />
+      <entry key="S5" value="0.14872110092807014" />
+      <entry key="S10" value="0.40411113046775105" />
+      <entry key="S30" value="0.9941376814812949" />
+      <entry key="S60" value="1.3808252393782108" />
+      <entry key="M2" value="1.9042723687921443" />
+      <entry key="M5" value="3.629492451746662" />
+      <entry key="M10" value="6.475822300653746" />
+      <entry key="M15" value="9.67432854502122" />
+      <entry key="M30" value="19.225735572329867" />
+      <entry key="H1" value="35.514538724385524" />
+      <entry key="H2" value="55.76794632578935" />
+      <entry key="H4" value="73.37082511920678" />
+      <entry key="D1" value="94.73471044461404" />
+      <entry key="W1" value="99.2242432862033" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0000000053596902" />
+      <entry key="S5" value="1.0007347878323154" />
+      <entry key="S10" value="1.0382429394723607" />
+      <entry key="S30" value="1.5346053045504162" />
+      <entry key="S60" value="2.054451193358031" />
+      <entry key="M2" value="2.806703881232744" />
+      <entry key="M5" value="4.9976439113866125" />
+      <entry key="M10" value="8.37818398276275" />
+      <entry key="M15" value="11.892463256075137" />
+      <entry key="M30" value="20.744495196777844" />
+      <entry key="H1" value="32.39209667806661" />
+      <entry key="H2" value="44.675046176818014" />
+      <entry key="H4" value="54.599541956481566" />
+      <entry key="D1" value="66.19246942902421" />
+      <entry key="W1" value="68.58734626197571" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.0022906932602185133" />
+      <entry key="MS500" value="0.2964786292218876" />
+      <entry key="S2" value="0.7460315901735733" />
+      <entry key="S5" value="1.0323854428464354" />
+      <entry key="S10" value="1.3768079896771859" />
+      <entry key="S30" value="2.4906969785098356" />
+      <entry key="S60" value="3.408110914178482" />
+      <entry key="M2" value="4.690662808509208" />
+      <entry key="M5" value="8.609858623041543" />
+      <entry key="M10" value="14.838128767599107" />
+      <entry key="M15" value="21.551088444653782" />
+      <entry key="M30" value="39.95549160395034" />
+      <entry key="H1" value="67.89407215584222" />
+      <entry key="H2" value="100.43363416374169" />
+      <entry key="H4" value="127.96436446525819" />
+      <entry key="D1" value="160.92591200275697" />
+      <entry key="W1" value="167.81140038899747" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3FtpKiM5ig0kTSOD8ZjDMZlSRdU" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Notification.DisplayName-DoNotAsk-DatabaseConfigFileWatcher.found": "New/updated database configurations found",
+    "Notification.DoNotAsk-DatabaseConfigFileWatcher.found": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.DoclynApiApplication.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "feature/protecao-rotas",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.runner",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="DoclynApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="doclyn-api" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.doclyn_api.DoclynApiApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.25134.95" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.25134.95" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1aa9cd73-5206-4d92-8422-df9db55a7161" name="Changes" comment="" />
+      <created>1782904158813</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1782904158813</updated>
+      <workItem from="1782904162466" duration="250000" />
+      <workItem from="1782904471205" duration="61000" />
+      <workItem from="1782904640343" duration="8142000" />
+      <workItem from="1782922437315" duration="679000" />
+      <workItem from="1782923155099" duration="705000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
