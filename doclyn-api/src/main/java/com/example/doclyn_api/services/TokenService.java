@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 @Service
@@ -49,8 +49,6 @@ public class TokenService {
     }
 
     private Date dataExpiracao() {
-        return Date.from(LocalDateTime.now().plusHours(2)
-                .atZone(ZoneId.of("America/Sao_Paulo"))
-                .toInstant());
+        return Date.from(Instant.now().plus(2, ChronoUnit.HOURS));
     }
 }

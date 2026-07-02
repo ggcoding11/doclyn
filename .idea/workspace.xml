@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aa9cd73-5206-4d92-8422-df9db55a7161" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/controllers/AuthController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/dtos/LoginRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/dtos/LoginResponseDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/dtos/RegisterRequestDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/enums/UserRole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/models/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/repositories/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/security/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/security/SecurityFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/services/TokenService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doclyn-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doclyn-api/pom.xml" afterDir="false" />
+    <list default="true" id="5cd6a549-b41e-42a8-be43-bccdba0ee553" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/DoclynApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/DoclynApiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/services/TokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/doclyn-api/src/main/java/com/example/doclyn_api/services/TokenService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doclyn-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/doclyn-api/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,17 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="40" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Enum" />
-        <option value="Interface" />
-        <option value="Class" />
-        <option value="Record" />
-      </list>
-    </option>
+    <option name="cachedIndexableFilesCount" value="46" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -54,68 +34,68 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="3.683251690147023E-42" />
-      <entry key="MS500" value="5.1670930129713665E-9" />
-      <entry key="S2" value="0.008478356900180012" />
-      <entry key="S5" value="0.14872110092807014" />
-      <entry key="S10" value="0.40411113046775105" />
-      <entry key="S30" value="0.9941376814812949" />
-      <entry key="S60" value="1.3808252393782108" />
-      <entry key="M2" value="1.9042723687921443" />
-      <entry key="M5" value="3.629492451746662" />
-      <entry key="M10" value="6.475822300653746" />
-      <entry key="M15" value="9.67432854502122" />
-      <entry key="M30" value="19.225735572329867" />
-      <entry key="H1" value="35.514538724385524" />
-      <entry key="H2" value="55.76794632578935" />
-      <entry key="H4" value="73.37082511920678" />
-      <entry key="D1" value="94.73471044461404" />
-      <entry key="W1" value="99.2242432862033" />
+      <entry key="MS100" value="1.0409497938705738" />
+      <entry key="MS500" value="1.5277768588189833" />
+      <entry key="S2" value="1.852339442232779" />
+      <entry key="S5" value="1.9380911404402594" />
+      <entry key="S10" value="1.9685510520567613" />
+      <entry key="S30" value="1.989405163211149" />
+      <entry key="S60" value="1.9946884754591" />
+      <entry key="M2" value="1.9973407017960814" />
+      <entry key="M5" value="1.9989354308887186" />
+      <entry key="M10" value="1.9994675737054797" />
+      <entry key="M15" value="1.999645017632002" />
+      <entry key="M30" value="1.9998224930616444" />
+      <entry key="H1" value="1.9999112425918835" />
+      <entry key="H2" value="1.9999556203111633" />
+      <entry key="H4" value="1.9999778099093817" />
+      <entry key="D1" value="1.9999963016173687" />
+      <entry key="W1" value="1.9999994716587866" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0000000053596902" />
-      <entry key="S5" value="1.0007347878323154" />
-      <entry key="S10" value="1.0382429394723607" />
-      <entry key="S30" value="1.5346053045504162" />
-      <entry key="S60" value="2.054451193358031" />
-      <entry key="M2" value="2.806703881232744" />
-      <entry key="M5" value="4.9976439113866125" />
-      <entry key="M10" value="8.37818398276275" />
-      <entry key="M15" value="11.892463256075137" />
-      <entry key="M30" value="20.744495196777844" />
-      <entry key="H1" value="32.39209667806661" />
-      <entry key="H2" value="44.675046176818014" />
-      <entry key="H4" value="54.599541956481566" />
-      <entry key="D1" value="66.19246942902421" />
-      <entry key="W1" value="68.58734626197571" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.0022906932602185133" />
-      <entry key="MS500" value="0.2964786292218876" />
-      <entry key="S2" value="0.7460315901735733" />
-      <entry key="S5" value="1.0323854428464354" />
-      <entry key="S10" value="1.3768079896771859" />
-      <entry key="S30" value="2.4906969785098356" />
-      <entry key="S60" value="3.408110914178482" />
-      <entry key="M2" value="4.690662808509208" />
-      <entry key="M5" value="8.609858623041543" />
-      <entry key="M10" value="14.838128767599107" />
-      <entry key="M15" value="21.551088444653782" />
-      <entry key="M30" value="39.95549160395034" />
-      <entry key="H1" value="67.89407215584222" />
-      <entry key="H2" value="100.43363416374169" />
-      <entry key="H4" value="127.96436446525819" />
-      <entry key="D1" value="160.92591200275697" />
-      <entry key="W1" value="167.81140038899747" />
+      <entry key="MS100" value="0.04094983904244761" />
+      <entry key="MS500" value="0.5617373232729227" />
+      <entry key="S2" value="1.281622160451656" />
+      <entry key="S5" value="1.6511039991223297" />
+      <entry key="S10" value="1.8129519394805433" />
+      <entry key="S30" value="1.934588870923892" />
+      <entry key="S60" value="1.9668940646801985" />
+      <entry key="M2" value="1.9833455644722744" />
+      <entry key="M5" value="1.9933136952497372" />
+      <entry key="M10" value="1.9966527442535675" />
+      <entry key="M15" value="1.9977675831981234" />
+      <entry key="M30" value="1.998883334835618" />
+      <entry key="H1" value="1.9994415531747962" />
+      <entry key="H2" value="1.9997207480201233" />
+      <entry key="H4" value="1.9998603668674273" />
+      <entry key="D1" value="1.9999767268191362" />
+      <entry key="W1" value="1.9999966752355793" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 3,
+  &quot;associatedIndex&quot;: 6,
   &quot;fromUser&quot;: false
 }</component>
-  <component name="ProjectId" id="3FtpKiM5ig0kTSOD8ZjDMZlSRdU" />
+  <component name="ProjectId" id="3Fx2pJh9xjU8cKRuJWAHnDmV6Wh" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -123,8 +103,6 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Notification.DisplayName-DoNotAsk-DatabaseConfigFileWatcher.found": "New/updated database configurations found",
-    "Notification.DoNotAsk-DatabaseConfigFileWatcher.found": "true",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -143,10 +121,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.runner",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -154,6 +129,9 @@
     <configuration name="DoclynApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="doclyn-api" />
+      <selectedOptions>
+        <option name="environmentVariables" />
+      </selectedOptions>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.doclyn_api.DoclynApiApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -170,20 +148,25 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1aa9cd73-5206-4d92-8422-df9db55a7161" name="Changes" comment="" />
-      <created>1782904158813</created>
+      <changelist id="5cd6a549-b41e-42a8-be43-bccdba0ee553" name="Changes" comment="" />
+      <created>1783002581599</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1782904158813</updated>
-      <workItem from="1782904162466" duration="250000" />
-      <workItem from="1782904471205" duration="61000" />
-      <workItem from="1782904640343" duration="8142000" />
-      <workItem from="1782922437315" duration="679000" />
-      <workItem from="1782923155099" duration="705000" />
+      <updated>1783002581599</updated>
+      <workItem from="1783002583060" duration="3232000" />
+      <workItem from="1783009056383" duration="369000" />
+      <workItem from="1783009443321" duration="22000" />
+      <workItem from="1783009482956" duration="113000" />
+      <workItem from="1783009625915" duration="41000" />
+      <workItem from="1783009679569" duration="64000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
