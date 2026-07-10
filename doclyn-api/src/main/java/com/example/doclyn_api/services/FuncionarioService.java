@@ -19,7 +19,7 @@ public class FuncionarioService {
 
     public Funcionario findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new ResourceNotFound(
-                "ERROR: Nenhum funcionário com esse id foi encontrado!"
+                "Nenhum funcionário com esse id foi encontrado!"
         ));
     }
 

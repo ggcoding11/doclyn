@@ -5,9 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class DoclynApiApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(DoclynApiApplication.class, args);
 	}
-
 }
