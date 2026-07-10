@@ -3,6 +3,7 @@ package com.example.doclyn_api.controllers;
 import com.example.doclyn_api.dtos.LoginRequestDTO;
 import com.example.doclyn_api.dtos.LoginResponseDTO;
 import com.example.doclyn_api.dtos.RegisterRequestDTO;
+import com.example.doclyn_api.exceptions.UserAlreadyExists;
 import com.example.doclyn_api.models.User;
 import com.example.doclyn_api.repositories.UserRepository;
 import com.example.doclyn_api.services.TokenService;
@@ -45,7 +46,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<Void> register(@RequestBody RegisterRequestDTO dados) {
         if (repository.findByLogin(dados.login()) != null) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+            throw new UserAlreadyExists();
         }
 
         String senhaCriptografada = passwordEncoder.encode(dados.password());
