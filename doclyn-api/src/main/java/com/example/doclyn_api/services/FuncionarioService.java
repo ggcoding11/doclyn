@@ -11,24 +11,24 @@ import java.util.List;
 @Service
 public class FuncionarioService {
     @Autowired
-    private FuncionarioRepository repository;
+    private FuncionarioRepository funcionarioRepository;
 
     public List<Funcionario> findAll() {
-        return repository.findAll();
+        return funcionarioRepository.findAll();
     }
 
     public Funcionario findById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFound(
+        return funcionarioRepository.findById(id).orElseThrow(() -> new ResourceNotFound(
                 "Nenhum funcionário com esse id foi encontrado!"
         ));
     }
 
     public Funcionario save(Funcionario funcionario) {
-        return repository.save(funcionario);
+        return funcionarioRepository.save(funcionario);
     }
 
     public void deleteById(Long id) {
-        repository.deleteById(id);
+        funcionarioRepository.deleteById(id);
     }
 
     public Funcionario updateById(Long id, Funcionario funcionarioNovo) {
@@ -43,6 +43,6 @@ public class FuncionarioService {
         funcionarioAntigo.setCargo(funcionarioNovo.getCargo());
         funcionarioAntigo.setStatus(funcionarioNovo.getStatus());
 
-        return repository.save(funcionarioAntigo);
+        return funcionarioRepository.save(funcionarioAntigo);
     }
 }
