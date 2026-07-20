@@ -2,8 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginBackground from "/assets/login-background.jpg";
 import Logo from "/assets/logo.png";
+import ErrorIcon from "/assets/error-icon.png";
 import { api } from "../services/ApiClient";
 import { AuthContext } from "../contexts/AuthContext";
+import { Modal } from "react-responsive-modal";
+import "react-responsive-modal/styles.css";
+import "../css/Login.css";
 
 const Login = () => {
   const [login, setLogin] = useState("");
@@ -14,6 +18,12 @@ const Login = () => {
   const navigate = useNavigate();
 
   const { setNewToken } = useContext(AuthContext);
+
+  const [openModal, setOpenModal] = useState(false);
+
+  const onCloseModal = () => {
+    setOpenModal(false);
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -30,6 +40,8 @@ const Login = () => {
       } else {
         setError("Erro ao tentar acessar. Tente novamente.");
       }
+
+      setOpenModal(true);
     } finally {
       setLoading(false);
     }
@@ -83,13 +95,34 @@ const Login = () => {
                 <button type="submit" className="btn btn-primary w-100">
                   Acessar
                 </button>
-              </form>
 
-              {error && (
-                <div class="alert alert-danger" role="alert">
-                  {error}
-                </div>
-              )}
+                <Modal
+                  open={openModal}
+                  onClose={onCloseModal}
+                  showCloseIcon={false}
+                  classNames={{
+                    modal: "customModal",
+                  }}
+                  center
+                >
+                  <div className="d-flex justify-content-center align-items-center flex-column gap-4">
+                    <div className="text-center">
+                      <img src={ErrorIcon} alt="error-icon" className="w-25" />
+                    </div>
+
+                    <div className="text-center fs-5">{error}</div>
+
+                    <div>
+                      <button
+                        onClick={onCloseModal}
+                        className="btn btn-secondary px-3"
+                      >
+                        Ok
+                      </button>
+                    </div>
+                  </div>
+                </Modal>
+              </form>
             </div>
           </div>
         </div>
