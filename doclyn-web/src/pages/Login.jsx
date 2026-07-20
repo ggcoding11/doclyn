@@ -1,15 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LoginBackground from "/assets/login-background.jpg";
 import Logo from "/assets/logo.png";
+import { api } from "../services/ApiClient";
+import { AuthContext } from "../contexts/AuthContext";
 
 const Login = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = (e) => {
+  const navigate = useNavigate();
+
+  const { setNewToken } = useContext(AuthContext);
+
+  const handleLogin = async (e) => {
     e.preventDefault();
+    setError(null);
+    setLoading(true);
 
-    //Continuar o envio do login!
+    try {
+      const response = await api.post("/auth/login", { login, password });
+      setNewToken(response.data.token);
+      navigate("/home");
+    } catch (err) {
+      if (err.response.status === 401) {
+        setError("Login ou usuário inválidos.");
+      } else {
+        setError("Erro ao tentar acessar. Tente novamente.");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -24,7 +47,7 @@ const Login = () => {
         </div>
         <div className="col-12 col-sm-7 bg-light-subtle">
           <div className="row vh-100 d-flex justify-content-center align-items-center">
-            <div className="col-10 col-sm-10 col-md-8 col-lg-6">
+            <div className="col-10 col-sm-10 col-md-8 col-lg-6 d-flex flex-column gap-2">
               <form onSubmit={handleLogin}>
                 <div className="mb-3">
                   <img src={Logo} className="img-fluid" alt="logo" />
@@ -39,6 +62,7 @@ const Login = () => {
                       placeholder="Digite o seu login"
                       onChange={(e) => setLogin(e.target.value)}
                       value={login}
+                      required
                     />
                   </label>
                 </div>
@@ -51,6 +75,7 @@ const Login = () => {
                       placeholder="Digite a sua senha"
                       onChange={(e) => setPassword(e.target.value)}
                       value={password}
+                      required
                     />
                   </label>
                 </div>
@@ -59,6 +84,12 @@ const Login = () => {
                   Acessar
                 </button>
               </form>
+
+              {error && (
+                <div class="alert alert-danger" role="alert">
+                  {error}
+                </div>
+              )}
             </div>
           </div>
         </div>
