@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import LoginBackground from "/assets/login-background.jpg";
 import Logo from "/assets/logo.png";
 import ErrorIcon from "/assets/error-icon.png";
+import SuccessIcon from "/assets/success-icon.png";
 import { api } from "../services/ApiClient";
 import { AuthContext } from "../contexts/AuthContext";
 import { Modal } from "react-responsive-modal";
@@ -12,38 +13,49 @@ import "../css/Login.css";
 const Login = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  const { setNewToken } = useContext(AuthContext);
+  const { setNewToken, isAuthenticated } = useContext(AuthContext);
 
   const [openModal, setOpenModal] = useState(false);
 
-  const onCloseModal = () => {
-    setOpenModal(false);
-  };
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/home");
+    }
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(null);
+    setErrorMessage(null);
     setLoading(true);
 
     try {
       const response = await api.post("/auth/login", { login, password });
       setNewToken(response.data.token);
-      navigate("/home");
-    } catch (err) {
-      if (err.response.status === 401) {
-        setError("Login ou usuário inválidos.");
+
+      setOpenModal(true);
+    } catch (error) {
+      if (error.response.status === 401) {
+        setErrorMessage("A senha está incorreta.");
       } else {
-        setError("Erro ao tentar acessar. Tente novamente.");
+        setErrorMessage("Erro ao tentar acessar. Tente novamente.");
       }
 
       setOpenModal(true);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const onCloseModal = () => {
+    setOpenModal(false);
+
+    if (isAuthenticated) {
+      navigate("/home");
     }
   };
 
@@ -107,10 +119,26 @@ const Login = () => {
                 >
                   <div className="d-flex justify-content-center align-items-center flex-column gap-4">
                     <div className="text-center">
-                      <img src={ErrorIcon} alt="error-icon" className="w-25" />
+                      {isAuthenticated ? (
+                        <img
+                          src={SuccessIcon}
+                          alt="success-icon"
+                          className="w-25"
+                        />
+                      ) : (
+                        <img
+                          src={ErrorIcon}
+                          alt="error-icon"
+                          className="w-25"
+                        />
+                      )}
                     </div>
 
-                    <div className="text-center fs-5">{error}</div>
+                    <div className="text-center fs-5">
+                      {isAuthenticated
+                        ? "Login realizado com sucesso!"
+                        : errorMessage}
+                    </div>
 
                     <div>
                       <button
