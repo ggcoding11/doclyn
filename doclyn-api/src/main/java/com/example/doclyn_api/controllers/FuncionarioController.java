@@ -38,7 +38,9 @@ public class FuncionarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Funcionario> updateById(@PathVariable Long id, @RequestBody Funcionario funcionarioNovo) {
+    public ResponseEntity<Funcionario> updateById(
+            @PathVariable Long id, @RequestBody Funcionario funcionarioNovo
+    ) {
         return ResponseEntity.ok(service.updateById(id, funcionarioNovo));
     }
 

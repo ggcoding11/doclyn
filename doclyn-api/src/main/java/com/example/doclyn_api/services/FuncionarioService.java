@@ -28,6 +28,10 @@ public class FuncionarioService {
     }
 
     public void deleteById(Long id) {
+        if (!funcionarioRepository.existsById(id)) {
+            throw new ResourceNotFound("Nenhum funcionário com esse id foi encontrado!");
+        }
+
         funcionarioRepository.deleteById(id);
     }
 
