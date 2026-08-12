@@ -1,7 +1,7 @@
 package com.example.doclyn_api.security;
 
+import com.example.doclyn_api.repositories.UserRepository;
 import com.example.doclyn_api.services.TokenService;
-import com.example.doclyn_api.services.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     TokenService tokenService;
 
     @Autowired
-    private UserService userService;
+    private UserRepository userRepository;
 
     @Override
     protected void doFilterInternal(
@@ -29,11 +29,10 @@ public class SecurityFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
         String token = recoverToken(request);
 
-        //Para endpoints com permitAll() não darem problema!
         if (token != null) {
             String login = tokenService.validateToken(token);
 
-            UserDetails user = userService.loadUserByUsername(login);
+            UserDetails user = userRepository.findByLogin(login);
 
             var authentication = new UsernamePasswordAuthenticationToken(
                     user, null, user.getAuthorities()
