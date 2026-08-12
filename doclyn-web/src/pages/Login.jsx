@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 import LoginBackground from "/assets/login-background.jpg";
 import Logo from "/assets/logo.png";
@@ -9,9 +10,9 @@ const Login = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // TODO: implementar a autenticação do zero.
+
   };
 
   return (

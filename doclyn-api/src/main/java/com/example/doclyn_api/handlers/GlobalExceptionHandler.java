@@ -25,11 +25,4 @@ public class GlobalExceptionHandler {
                 "ERROR: " + exception.getMessage()
         );
     }
-
-    @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<String> handleBadCredentials(BadCredentialsException exception) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
-                "ERROR: " + exception.getMessage()
-        );
-    }
 }

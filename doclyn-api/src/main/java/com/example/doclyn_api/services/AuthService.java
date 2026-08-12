@@ -35,7 +35,7 @@ public class AuthService {
     }
 
     public void register(CredentialsRequestDTO data) {
-        if (userRepository.findByLogin(data.login()) != null) {
+        if (!userRepository.findByLogin(data.login()).isEmpty()) {
             throw new UserAlreadyExists();
         }
 
