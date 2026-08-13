@@ -1,1 +1,0 @@
-Parei no tratamento de exceção de login inválido -> Tenho que entender melhor
