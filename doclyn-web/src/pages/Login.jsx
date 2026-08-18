@@ -5,8 +5,8 @@ import BackgroundImage from "/assets/background_login_page.jpg";
 const Login = () => {
   return (
     <div id="container" className="grid grid-cols-1 md:grid-cols-2 h-screen">
-      <div className="hidden md:block">
-        <img src={BackgroundImage} alt="background-image" />
+      <div className="hidden md:block overflow-hidden">
+        <img src={BackgroundImage} className="w-full h-full" alt="background-image" />
       </div>
 
       <form className="flex flex-col justify-center items-center gap-2">
