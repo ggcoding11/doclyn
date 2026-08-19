@@ -36,10 +36,10 @@ public class AuthController {
     }
 
     @PostMapping("/validate")
-    public ResponseEntity<?> validate(@RequestBody TokenValidationDTO data) {
+    public ResponseEntity<String> validate(@RequestBody TokenValidationDTO data) {
         tokenService.validateToken(data.token());
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Token está válido!");
     }
 }
 
