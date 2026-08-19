@@ -18,7 +18,7 @@ const Login = () => {
     const request = { login, password };
 
     try {
-      const response = await axios.post(apiUrl, request);
+      const response = await axios.post(apiUrl + "/auth/login", request);
 
       localStorage.setItem("token", response.data.token);
 
@@ -27,14 +27,6 @@ const Login = () => {
       console.log("ERROR:", error);
     }
   };
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      navigate("/home");
-    }
-  }, []);
 
   return (
     <div id="container" className="grid grid-cols-1 md:grid-cols-2 h-screen">

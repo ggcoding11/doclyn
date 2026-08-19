@@ -1,5 +1,6 @@
 package com.example.doclyn_api.security;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.doclyn_api.repositories.UserRepository;
 import com.example.doclyn_api.services.TokenService;
 import jakarta.servlet.FilterChain;
@@ -30,7 +31,11 @@ public class SecurityFilter extends OncePerRequestFilter {
         String token = recoverToken(request);
 
         if (token != null) {
-            String login = tokenService.validateToken(token);
+            DecodedJWT decodedJWT = tokenService.validateToken(token);
+
+            System.out.println(decodedJWT);
+
+            String login = decodedJWT.getSubject();
 
             UserDetails user = userRepository.findByLogin(login);
 

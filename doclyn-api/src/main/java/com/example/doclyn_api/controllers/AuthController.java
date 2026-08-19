@@ -1,8 +1,11 @@
 package com.example.doclyn_api.controllers;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.doclyn_api.dtos.CredentialsRequestDTO;
 import com.example.doclyn_api.dtos.LoginResponseDTO;
+import com.example.doclyn_api.dtos.TokenValidationDTO;
 import com.example.doclyn_api.services.AuthService;
+import com.example.doclyn_api.services.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
     @Autowired
     private AuthService authService;
+    @Autowired
+    private TokenService tokenService;
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> login(@RequestBody CredentialsRequestDTO data){
@@ -28,6 +33,13 @@ public class AuthController {
         authService.register(data);
 
         return ResponseEntity.ok("Usuário criado com sucesso!");
+    }
+
+    @PostMapping("/validate")
+    public ResponseEntity<?> validate(@RequestBody TokenValidationDTO data) {
+        tokenService.validateToken(data.token());
+
+        return ResponseEntity.ok().build();
     }
 }
 
