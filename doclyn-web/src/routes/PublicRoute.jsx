@@ -1,12 +1,12 @@
-import React from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 const PublicRoute = ({ children }) => {
-  const token = localStorage.getItem("token");
-  
+  const { isAuthenticated } = useContext(AuthContext);
 
-
-  return token ? <Navigate to="/home" /> : children;
+  return isAuthenticated ? <Navigate to="/home" /> : children;
 };
 
 export default PublicRoute;
