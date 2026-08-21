@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Logo from "/assets/logo.png";
 import BackgroundImage from "/assets/background_login_page.jpg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -11,6 +12,8 @@ const Login = () => {
 
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+
+    const { setIsAuthenticated } = useContext(AuthContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -21,6 +24,8 @@ const Login = () => {
       const response = await axios.post(apiUrl + "/auth/login", request);
 
       localStorage.setItem("token", response.data.token);
+
+      setIsAuthenticated(true);
 
       navigate("/home");
     } catch (error) {
@@ -75,7 +80,7 @@ const Login = () => {
             />
           </fieldset>
 
-          <button type="submit" className="btn w-full">
+          <button type="submit" className="btn btn-soft w-full">
             Fazer login
           </button>
         </div>
