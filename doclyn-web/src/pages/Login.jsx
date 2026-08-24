@@ -12,8 +12,8 @@ const Login = () => {
 
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-
-    const { setIsAuthenticated } = useContext(AuthContext);
+  
+  const { setIsAuthenticated } = useContext(AuthContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -29,8 +29,12 @@ const Login = () => {
 
       navigate("/home");
     } catch (error) {
-      console.log("ERROR:", error);
+      openModalLoginFail();
     }
+  };
+
+  const openModalLoginFail = () => {
+    document.getElementById("modal-login-fail").showModal()
   };
 
   return (
@@ -83,6 +87,20 @@ const Login = () => {
           <button type="submit" className="btn btn-soft w-full">
             Fazer login
           </button>
+
+          <dialog id="modal-login-fail" className="modal">
+            <div className="modal-box bg-red-400">
+              <h3 className="font-bold text-lg">Erro de autenticação</h3>
+              <p className="py-4 text-xl">
+                Login ou senha incorretos!
+              </p>
+              <div className="modal-action">
+                <form method="dialog">
+                  <button className="btn">Fechar</button>
+                </form>
+              </div>
+            </div>
+          </dialog>
         </div>
       </form>
     </div>
