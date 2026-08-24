@@ -5,8 +5,6 @@ import { FaFile } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-import "../css/Sidebar.css";
-
 const Sidebar = ({ children, activeMenu }) => {
   const navigate = useNavigate();
 
@@ -76,7 +74,7 @@ const Sidebar = ({ children, activeMenu }) => {
           <ul className="flex flex-col gap-2 text-xl">
             {menuItems.map((menu) => (
               <li
-                className={activeMenu === menu.routeName && "bg-zinc-300"}
+                className={`rounded-lg ${activeMenu === menu.routeName && "bg-zinc-300"}`}
                 onClick={() => navigate("/" + menu.routeName)}
               >
                 <div className="flex items-center gap-4">
