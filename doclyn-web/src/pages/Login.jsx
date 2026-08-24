@@ -12,7 +12,9 @@ const Login = () => {
 
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-  
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const { setIsAuthenticated } = useContext(AuthContext);
 
   const handleLogin = async (e) => {
@@ -21,6 +23,10 @@ const Login = () => {
     const request = { login, password };
 
     try {
+      setIsLoading(true);
+
+      console.log(isLoading);
+
       const response = await axios.post(apiUrl + "/auth/login", request);
 
       localStorage.setItem("token", response.data.token);
@@ -30,11 +36,13 @@ const Login = () => {
       navigate("/home");
     } catch (error) {
       openModalLoginFail();
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const openModalLoginFail = () => {
-    document.getElementById("modal-login-fail").showModal()
+    document.getElementById("modal-login-fail").showModal();
   };
 
   return (
@@ -84,25 +92,25 @@ const Login = () => {
             />
           </fieldset>
 
-          <button type="submit" className="btn btn-soft w-full">
+          <button type="submit" className="btn btn-soft w-full" disabled={isLoading}>
             Fazer login
           </button>
-
-          <dialog id="modal-login-fail" className="modal">
-            <div className="modal-box bg-red-400">
-              <h3 className="font-bold text-lg">Erro de autenticação</h3>
-              <p className="py-4 text-xl">
-                Login ou senha incorretos!
-              </p>
-              <div className="modal-action">
-                <form method="dialog">
-                  <button className="btn">Fechar</button>
-                </form>
-              </div>
-            </div>
-          </dialog>
         </div>
       </form>
+
+      <dialog id="modal-login-fail" className="modal">
+        <div className="modal-box bg-red-400">
+          <h3 className="font-bold text-lg">Erro de autenticação</h3>
+          <p className="py-4 text-xl">Login ou senha incorretos!</p>
+          <div className="modal-action">
+            <form method="dialog">
+              <button className="btn">
+                Fechar
+              </button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };
