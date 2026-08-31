@@ -4,6 +4,7 @@ import BackgroundImage from "/assets/background_login_page.jpg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import { VscError } from "react-icons/vsc";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -99,9 +100,11 @@ const Login = () => {
       </form>
 
       <dialog id="modal-login-fail" className="modal">
-        <div className="modal-box bg-red-400">
-          <h3 className="font-bold text-lg">Erro de autenticação</h3>
-          <p className="py-4 text-xl">Login ou senha incorretos!</p>
+        <div className="modal-box flex flex-col items-center justify-center">
+          <VscError className="text-7xl mb-2" />
+          
+          <h3 className="font-bold text-xl">Erro de autenticação</h3>
+          <p className="py-2 text-xl">Login ou senha incorretos!</p>
           <div className="modal-action">
             <form method="dialog">
               <button className="btn">
