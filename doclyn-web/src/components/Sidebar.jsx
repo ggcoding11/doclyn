@@ -10,16 +10,19 @@ const Sidebar = ({ children, activeMenu }) => {
 
   const menuItems = [
     {
+      id: 1,
       title: "Home",
       icon: <FaHome />,
       routeName: "home",
     },
     {
+      id: 2,
       title: "Funcionários",
       icon: <FaUser />,
       routeName: "funcionarios",
     },
     {
+      id: 3,
       title: "Documentos",
       icon: <FaFile />,
       routeName: "documentos",
@@ -31,7 +34,7 @@ const Sidebar = ({ children, activeMenu }) => {
       <input id="sidebar" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col items-center justify-center">
         {/* Conteúdo da página */}
-        <div className="bg-base-200 h-screen w-full">
+        <div className="bg-base-200 min-h-screen w-full">
           <div className="navbar bg-base-100 shadow-sm">
             <div className="flex-none">
               <label
@@ -74,6 +77,7 @@ const Sidebar = ({ children, activeMenu }) => {
           <ul className="flex flex-col gap-2 text-xl">
             {menuItems.map((menu) => (
               <li
+                key={menu.id}
                 className={`rounded-lg ${activeMenu === menu.routeName && "bg-zinc-300"}`}
                 onClick={() => navigate("/" + menu.routeName)}
               >

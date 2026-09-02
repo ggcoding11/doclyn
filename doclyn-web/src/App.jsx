@@ -6,6 +6,7 @@ import { AuthContext } from "./contexts/AuthContext";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Funcionarios from "./pages/Funcionarios";
+import FuncionariosView from "./pages/FuncionariosView";
 import Documentos from "./pages/Documentos";
 
 const App = () => {
@@ -37,6 +38,14 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <Funcionarios />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/funcionarios/:id"
+              element={
+                <ProtectedRoute>
+                  <FuncionariosView />
                 </ProtectedRoute>
               }
             />
