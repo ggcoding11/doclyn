@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -14,7 +14,7 @@ export const AuthContextProvider = ({ children }) => {
       const token = localStorage.getItem("token");
 
       if (!token) {
-        setLoading(false);
+        setIsLoading(false);
         return;
       }
 
@@ -25,7 +25,7 @@ export const AuthContextProvider = ({ children }) => {
       } catch (error) {
         console.log(error);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
@@ -33,7 +33,7 @@ export const AuthContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, loading }}>
+    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, isLoading }}>
       {children}
     </AuthContext.Provider>
   );

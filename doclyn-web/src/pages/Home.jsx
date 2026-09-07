@@ -1,12 +1,14 @@
 import React from "react";
 
+import Sidebar from "../components/Sidebar";
+
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-
-      <p>Bem vindo ao sistema</p>
-    </div>
+    <Sidebar activeMenu={"home"}>
+      <div id="main">
+        Home
+      </div>
+    </Sidebar>    
   );
 };
 

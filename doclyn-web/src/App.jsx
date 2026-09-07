@@ -1,18 +1,20 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Login from "./pages/Login";
-import Home from "./pages/Home";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
-import axios from "axios";
 import { AuthContext } from "./contexts/AuthContext";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Funcionarios from "./pages/Funcionarios";
+import FuncionariosView from "./pages/FuncionariosView";
+import Documentos from "./pages/Documentos";
 
 const App = () => {
-  const { loading } = useContext(AuthContext);
+  const { isLoading } = useContext(AuthContext);
 
   return (
     <>
-      {!loading && (
+      {!isLoading && (
         <BrowserRouter>
           <Routes>
             <Route
@@ -28,6 +30,30 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <Home />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/funcionarios"
+              element={
+                <ProtectedRoute>
+                  <Funcionarios />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/funcionarios/:id"
+              element={
+                <ProtectedRoute>
+                  <FuncionariosView />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/documentos"
+              element={
+                <ProtectedRoute>
+                  <Documentos />
                 </ProtectedRoute>
               }
             />

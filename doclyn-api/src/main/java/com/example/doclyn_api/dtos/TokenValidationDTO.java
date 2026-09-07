@@ -1,4 +1,6 @@
 package com.example.doclyn_api.dtos;
 
-public record TokenValidationDTO(String token) {
+import jakarta.validation.constraints.NotBlank;
+
+public record TokenValidationDTO(@NotBlank String token) {
 }
