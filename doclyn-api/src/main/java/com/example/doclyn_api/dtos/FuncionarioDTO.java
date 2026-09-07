@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 
-public record FuncionarioUpdateDTO(
+public record FuncionarioDTO(
         @NotBlank
         String nome,
 

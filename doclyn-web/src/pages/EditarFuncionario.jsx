@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../services/api";
+import { GiConfirmed } from "react-icons/gi";
+import { convertBrazilianDateToAmerican } from "../utils/ConvertBrazillianDateToAmerican";
 
 const EditarFuncionario = () => {
   const { id } = useParams();
@@ -23,6 +25,15 @@ const EditarFuncionario = () => {
       const response = await api.get(`/funcionarios/${id}`);
 
       setFuncionario(response.data);
+
+      setNome(response.data.nome);
+      setCpf(response.data.cpf);
+      setTelefone(response.data.telefone);
+      setEmail(response.data.email);
+      setDataNascimento(response.data.dataNascimento);
+      setDataAdmissao(response.data.dataAdmissao);
+      setCargo(response.data.cargo);
+      setStatus(response.data.status);
     };
 
     fetchData();
@@ -30,6 +41,9 @@ const EditarFuncionario = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setDataNascimento(convertBrazilianDateToAmerican(dataNascimento));
+    setDataAdmissao(convertBrazilianDateToAmerican(dataAdmissao));
 
     const payload = {
       nome,
@@ -42,7 +56,17 @@ const EditarFuncionario = () => {
       status,
     };
 
-    const response = await api.put(`/funcionarios/${id}`, payload);
+    try {
+      const response = await api.put(`/funcionarios/${id}`, payload);
+      console.log(response);
+      openModalSuccess();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const openModalSuccess = () => {
+    document.getElementById("modal-success").showModal();
   };
 
   return (
@@ -69,7 +93,7 @@ const EditarFuncionario = () => {
                   type="text"
                   id="nome"
                   className="input w-full"
-                  value={funcionario.nome}
+                  value={nome}
                   onChange={(e) => setNome(e.target.value)}
                   placeholder="Digite o nome..."
                   required
@@ -84,7 +108,7 @@ const EditarFuncionario = () => {
                   type="text"
                   id="cpf"
                   className="input w-full"
-                  value={funcionario.cpf}
+                  value={cpf}
                   onChange={(e) => setCpf(e.target.value)}
                   placeholder="Digite o CPF..."
                   required
@@ -99,7 +123,7 @@ const EditarFuncionario = () => {
                   type="text"
                   id="telefone"
                   className="input w-full"
-                  value={funcionario.telefone}
+                  value={telefone}
                   onChange={(e) => setTelefone(e.target.value)}
                   placeholder="Digite o telefone..."
                   required
@@ -114,7 +138,7 @@ const EditarFuncionario = () => {
                   type="text"
                   id="email"
                   className="input w-full"
-                  value={funcionario.email}
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Digite o e-mail..."
                   required
@@ -126,10 +150,10 @@ const EditarFuncionario = () => {
                   Data de Nascimento<span className="text-red-700">*</span>
                 </label>
                 <input
-                  type="text"
+                  type="date"
                   id="dataNascimento"
                   className="input w-full"
-                  value={funcionario.dataNascimento}
+                  value={dataNascimento}
                   onChange={(e) => setDataNascimento(e.target.value)}
                   placeholder="Digite a data de nascimento..."
                   required
@@ -141,10 +165,10 @@ const EditarFuncionario = () => {
                   Data de Admissão<span className="text-red-700">*</span>
                 </label>
                 <input
-                  type="text"
+                  type="date"
                   id="dataAdmissao"
                   className="input w-full"
-                  value={funcionario.dataAdmissao}
+                  value={dataAdmissao}
                   onChange={(e) => setDataAdmissao(e.target.value)}
                   placeholder="Digite a data de admissão..."
                   required
@@ -159,7 +183,7 @@ const EditarFuncionario = () => {
                   type="text"
                   id="cargo"
                   className="input w-full"
-                  value={funcionario.cargo}
+                  value={cargo}
                   onChange={(e) => setCargo(e.target.value)}
                   placeholder="Digite o cargo..."
                   required
@@ -174,7 +198,7 @@ const EditarFuncionario = () => {
                   type="text"
                   id="status"
                   className="input w-full"
-                  value={funcionario.status}
+                  value={status}
                   onChange={(e) => setStatus(e.target.value)}
                   placeholder="Digite o status..."
                   required
@@ -188,6 +212,22 @@ const EditarFuncionario = () => {
           )}
         </div>
       </div>
+
+      <dialog id="modal-success" className="modal">
+        <div className="modal-box flex flex-col items-center justify-center">
+          <GiConfirmed className="text-7xl mb-2" />
+
+          <h3 className="font-bold text-xl">Dados atualizados!</h3>
+          <p className="py-2 text-xl text-center">
+            Os dados do funcionário foram alterados com sucesso!
+          </p>
+          <div className="modal-action">
+            <form method="dialog">
+              <button className="btn">Fechar</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </Sidebar>
   );
 };

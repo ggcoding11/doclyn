@@ -29,4 +29,24 @@ public class Funcionario {
 
     @Enumerated(EnumType.STRING)
     private StatusEnum status;
+
+    public Funcionario(
+            String nome,
+            String cpf,
+            String telefone,
+            String email,
+            LocalDate dataNascimento,
+            LocalDate dataAdmissao,
+            CargoEnum cargo,
+            StatusEnum status
+    ) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.email = email;
+        this.dataNascimento = dataNascimento;
+        this.dataAdmissao = dataAdmissao;
+        this.cargo = cargo;
+        this.status = status;
+    }
 }
