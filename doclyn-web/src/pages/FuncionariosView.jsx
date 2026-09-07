@@ -35,8 +35,8 @@ const FuncionariosView = () => {
           </div>
 
           <button
-            className="btn w-20"
-            onClick={() => alert("Olá")}
+            className="btn btn-success w-20"
+            onClick={() => navigate(`/funcionarios/editar/${id}`)}
           >
             Editar
           </button>

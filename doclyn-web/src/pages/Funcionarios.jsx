@@ -55,7 +55,12 @@ const Funcionarios = () => {
                       <td>{funcionario.status}</td>
                       <td>
                         <div className="flex gap-2">
-                          <button className="btn btn-success">
+                          <button
+                            className="btn btn-success"
+                            onClick={() =>
+                              navigate(`/funcionarios/editar/${funcionario.id}`)
+                            }
+                          >
                             <FaPencilAlt />
                           </button>
                           <button
