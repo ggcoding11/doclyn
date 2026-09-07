@@ -22,37 +22,69 @@ const FuncionariosView = () => {
 
   return (
     <Sidebar activeMenu={"funcionarios"}>
-      <div className="min-h-screen px-4 py-2 flex flex-col gap-4" id="main">
+      <div className="px-4 py-2 flex flex-col gap-4" id="main">
         <button className="btn w-20" onClick={() => navigate("/funcionarios")}>
           Voltar
         </button>
-        <div className="flex flex-col gap-2">
-          <h1 className="text-xl font-semibold">Dados do funcionário</h1>
 
-          <h3>Consulte ou altere os dados do funcionário</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 items-center">
+          <div className="flex flex-col gap-2 mb-2">
+            <h1 className="text-xl font-semibold">Dados do funcionário</h1>
+
+            <h3>Consulte ou altere os dados do funcionário</h3>
+          </div>
+
+          <button
+            className="btn w-20"
+            onClick={() => alert("Olá")}
+          >
+            Editar
+          </button>
         </div>
 
         {funcionario && (
-          <div className="flex flex-col text-2xl gap-2">
-            <div>
-              <span className="font-semibold">Nome:</span> {funcionario.nome}
+          <div className="flex flex-col gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-0">
+              <div>
+                <h1 className="text-xl font-bold">{funcionario.nome}</h1>
+                <h3>{funcionario.cargo}</h3>
+              </div>
+
+              <div className="flex flex-col">
+                <span className="font-bold">Status:</span>
+                <span>{funcionario.status}</span>
+              </div>
             </div>
-            <div>
-              <span className="font-semibold">CPF:</span> {funcionario.cpf}
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-0">
+              <div className="flex flex-col">
+                <span className="font-bold">CPF:</span>
+                <span> {funcionario.cpf}</span>
+              </div>
+
+              <div className="flex flex-col">
+                <span className="font-bold"> Data de Nascimento:</span>
+                {funcionario.dataNascimento}
+              </div>
             </div>
-            <div>
-              <span className="font-semibold">Email:</span> {funcionario.email}
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-0">
+              <div className="flex flex-col">
+                <span className="font-bold">E-mail:</span>
+                <span> {funcionario.email}</span>
+              </div>
+
+              <div className="flex flex-col">
+                <span className="font-bold"> Telefone:</span>
+                {funcionario.telefone}
+              </div>
             </div>
-            <div>
-              <span className="font-semibold">Cargo:</span> {funcionario.cargo}
-            </div>
-            <div>
-              <span className="font-semibold">Data de Admissão: </span>
-              {funcionario.dataAdmissao}
-            </div>
-            <div>
-              <span className="font-semibold">Status: </span>
-              {funcionario.status}
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-0">
+              <div className="flex flex-col">
+                <span className="font-bold">Data de Admissão:</span>
+                <span> {funcionario.dataAdmissao}</span>
+              </div>
             </div>
           </div>
         )}
