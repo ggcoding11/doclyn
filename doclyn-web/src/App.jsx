@@ -6,8 +6,9 @@ import { AuthContext } from "./contexts/AuthContext";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Funcionarios from "./pages/Funcionarios";
-import FuncionariosView from "./pages/FuncionariosView";
+import VerFuncionario from "./pages/VerFuncionario";
 import EditarFuncionario from "./pages/EditarFuncionario";
+import SalvarFuncionario from "./pages/SalvarFuncionario";
 import Documentos from "./pages/Documentos";
 
 const App = () => {
@@ -46,7 +47,7 @@ const App = () => {
               path="/funcionarios/:id"
               element={
                 <ProtectedRoute>
-                  <FuncionariosView />
+                  <VerFuncionario />
                 </ProtectedRoute>
               }
             />
@@ -55,6 +56,14 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <EditarFuncionario />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/funcionarios/salvar"
+              element={
+                <ProtectedRoute>
+                  <SalvarFuncionario />
                 </ProtectedRoute>
               }
             />

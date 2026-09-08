@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import api from "../services/api";
 
-const FuncionariosView = () => {
+const VerFuncionario = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [funcionario, setFuncionario] = useState(null);
@@ -93,4 +93,4 @@ const FuncionariosView = () => {
   );
 };
 
-export default FuncionariosView;
+export default VerFuncionario;

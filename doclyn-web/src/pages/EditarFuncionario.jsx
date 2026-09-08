@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../services/api";
+import { VscError } from "react-icons/vsc";
 import { GiConfirmed } from "react-icons/gi";
 import { convertBrazilianDateToAmerican } from "../utils/ConvertBrazillianDateToAmerican";
+import { CargoSelect } from "../components/CargoSelect";
+import { StatusSelect } from "../components/StatusSelect";
+import { PatternFormat } from "react-number-format";
 
 const EditarFuncionario = () => {
   const { id } = useParams();
@@ -58,15 +62,20 @@ const EditarFuncionario = () => {
 
     try {
       const response = await api.put(`/funcionarios/${id}`, payload);
-      console.log(response);
       openModalSuccess();
     } catch (error) {
       console.log(error);
+
+      openModalError();
     }
   };
 
   const openModalSuccess = () => {
     document.getElementById("modal-success").showModal();
+  };
+
+  const openModalError = () => {
+    document.getElementById("modal-error").showModal();
   };
 
   return (
@@ -104,14 +113,18 @@ const EditarFuncionario = () => {
                 <label className="label" htmlFor="cpf">
                   CPF<span className="text-red-700">*</span>
                 </label>
-                <input
-                  type="text"
+
+                <PatternFormat
                   id="cpf"
                   className="input w-full"
+                  format="###.###.###-##"
                   value={cpf}
-                  onChange={(e) => setCpf(e.target.value)}
-                  placeholder="Digite o CPF..."
+                  onValueChange={(values) => {
+                    setCpf(values.value);
+                  }}
                   required
+                  allowEmptyFormatting
+                  mask="_"
                 />
               </fieldset>
 
@@ -119,14 +132,17 @@ const EditarFuncionario = () => {
                 <label className="label" htmlFor="telefone">
                   Telefone<span className="text-red-700">*</span>
                 </label>
-                <input
-                  type="text"
+                <PatternFormat
                   id="telefone"
                   className="input w-full"
+                  format="(##) #####-####"
                   value={telefone}
-                  onChange={(e) => setTelefone(e.target.value)}
-                  placeholder="Digite o telefone..."
+                  onValueChange={(values) => {
+                    setTelefone(values.value);
+                  }}
                   required
+                  allowEmptyFormatting
+                  mask="_"
                 />
               </fieldset>
 
@@ -135,7 +151,7 @@ const EditarFuncionario = () => {
                   E-mail<span className="text-red-700">*</span>
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   id="email"
                   className="input w-full"
                   value={email}
@@ -176,32 +192,18 @@ const EditarFuncionario = () => {
               </fieldset>
 
               <fieldset className="fieldset">
-                <label className="label" htmlFor="cargo">
-                  Cargo<span className="text-red-700">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="cargo"
-                  className="input w-full"
+                <CargoSelect
                   value={cargo}
                   onChange={(e) => setCargo(e.target.value)}
-                  placeholder="Digite o cargo..."
-                  required
+                  required={true}
                 />
               </fieldset>
 
               <fieldset className="fieldset">
-                <label className="label" htmlFor="status">
-                  Status<span className="text-red-700">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="status"
-                  className="input w-full"
+                <StatusSelect
                   value={status}
                   onChange={(e) => setStatus(e.target.value)}
-                  placeholder="Digite o status..."
-                  required
+                  required={true}
                 />
               </fieldset>
 
@@ -220,6 +222,22 @@ const EditarFuncionario = () => {
           <h3 className="font-bold text-xl">Dados atualizados!</h3>
           <p className="py-2 text-xl text-center">
             Os dados do funcionário foram alterados com sucesso!
+          </p>
+          <div className="modal-action">
+            <form method="dialog">
+              <button className="btn">Fechar</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+
+      <dialog id="modal-error" className="modal">
+        <div className="modal-box flex flex-col items-center justify-center">
+          <VscError className="text-7xl mb-2" />
+
+          <h3 className="font-bold text-xl">Erro ao atualizar dados!</h3>
+          <p className="py-2 text-xl text-center">
+            Ocorreu um erro ao atualizar os dados do funcionário.
           </p>
           <div className="modal-action">
             <form method="dialog">
