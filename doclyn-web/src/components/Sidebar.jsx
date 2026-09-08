@@ -70,7 +70,7 @@ const Sidebar = ({ children, activeMenu }) => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="menu flex flex-col gap-4 bg-zinc-200 min-h-full w-70 p-4">
+        <div className="menu flex flex-col bg-white dark:bg-gray-800 gap-4 min-h-full w-70 p-4">
           <header className="flex justify-center">
             <img src={Logo} alt="logo" className="w-50" />
           </header>
@@ -78,7 +78,7 @@ const Sidebar = ({ children, activeMenu }) => {
             {menuItems.map((menu) => (
               <li
                 key={menu.id}
-                className={`rounded-lg ${activeMenu === menu.routeName && "bg-zinc-300"}`}
+                className={`rounded-lg ${activeMenu === menu.routeName && "bg-zinc-300 dark:bg-zinc-500"}`}
                 onClick={() => navigate("/" + menu.routeName)}
               >
                 <div className="flex items-center gap-4">

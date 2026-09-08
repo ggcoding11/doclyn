@@ -1,5 +1,6 @@
 package com.example.doclyn_api.controllers;
 
+import com.example.doclyn_api.dtos.FuncionarioDTO;
 import com.example.doclyn_api.models.Funcionario;
 import com.example.doclyn_api.services.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class FuncionarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Funcionario> findById(@PathVariable Long id) {
+    public ResponseEntity<Funcionario> findById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(service.findById(id));
     }
 
@@ -39,13 +40,13 @@ public class FuncionarioController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Funcionario> updateById(
-            @PathVariable Long id, @RequestBody Funcionario funcionarioNovo
+            @PathVariable("id") Long id, @RequestBody FuncionarioDTO funcionarioNovo
     ) {
         return ResponseEntity.ok(service.updateById(id, funcionarioNovo));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable Long id) {
+    public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
         service.deleteById(id);
 
         return ResponseEntity.noContent().build();
