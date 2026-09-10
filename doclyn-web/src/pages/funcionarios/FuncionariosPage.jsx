@@ -1,11 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import { FaPencilAlt, FaRegEye, FaRegTrashAlt } from "react-icons/fa";
+import { BiSortAlt2 } from "react-icons/bi";
 import api from "../../services/api";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { convertAmericanDateToBrazilian } from "../../utils/ConvertAmericanDateToBrazilian";
 import { formatCPF } from "../../utils/FormatCPF";
+
+const funcionarioTableFields = [
+  "#",
+  "Nome",
+  "Cargo",
+  "CPF",
+  "Data de Admissão",
+  "Status",
+  "Ações",
+];
 
 const FuncionariosPage = () => {
   const navigate = useNavigate();
@@ -47,13 +58,14 @@ const FuncionariosPage = () => {
             <table className="table">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Nome</th>
-                  <th>Cargo</th>
-                  <th>CPF</th>
-                  <th>Data de Admissão</th>
-                  <th>Status</th>
-                  <th>Ações</th>
+                  {funcionarioTableFields.map((field) => (
+                    <th>
+                      <div className="flex items-center gap-2">
+                        <span>{field}</span>
+                        <BiSortAlt2 className="text-xl" />
+                      </div>
+                    </th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
