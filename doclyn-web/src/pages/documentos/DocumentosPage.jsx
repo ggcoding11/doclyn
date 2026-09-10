@@ -1,7 +1,7 @@
 import React from "react";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../../components/Sidebar";
 
-const Documentos = () => {
+const DocumentosPage = () => {
   return (
     <Sidebar activeMenu={"documentos"}>
       <div id="main">Documentos</div>
@@ -9,4 +9,4 @@ const Documentos = () => {
   );
 };
 
-export default Documentos;
+export default DocumentosPage;

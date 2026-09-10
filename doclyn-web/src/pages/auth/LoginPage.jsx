@@ -3,12 +3,12 @@ import Logo from "/assets/logo.png";
 import BackgroundImage from "/assets/background_login_page.jpg";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import { VscError } from "react-icons/vsc";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const Login = () => {
+const LoginPage = () => {
   const navigate = useNavigate();
 
   const [login, setLogin] = useState("");
@@ -118,4 +118,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

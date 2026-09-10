@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../../components/Sidebar";
 import { FaPencilAlt, FaRegEye, FaRegTrashAlt } from "react-icons/fa";
-import api from "../services/api";
+import api from "../../services/api";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { convertAmericanDateToBrazilian } from "../utils/ConvertAmericanDateToBrazilian";
-import { formatCPF } from "../utils/FormatCPF";
+import { convertAmericanDateToBrazilian } from "../../utils/ConvertAmericanDateToBrazilian";
+import { formatCPF } from "../../utils/FormatCPF";
 
-const Funcionarios = () => {
+const FuncionariosPage = () => {
   const navigate = useNavigate();
 
   const [funcionarios, setFuncionarios] = useState(null);
@@ -104,4 +104,4 @@ const Funcionarios = () => {
   );
 };
 
-export default Funcionarios;
+export default FuncionariosPage;

@@ -3,13 +3,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
 import { AuthContext } from "./contexts/AuthContext";
-import Login from "./pages/Login";
-import Home from "./pages/Home";
-import Funcionarios from "./pages/Funcionarios";
-import VerFuncionario from "./pages/VerFuncionario";
-import EditarFuncionario from "./pages/EditarFuncionario";
-import SalvarFuncionario from "./pages/SalvarFuncionario";
-import Documentos from "./pages/Documentos";
+import LoginPage from "./pages/auth/LoginPage";
+import HomePage from "./pages/home/HomePage";
+import FuncionariosPage from "./pages/funcionarios/FuncionariosPage";
+import FuncionarioDetalhePage from "./pages/funcionarios/FuncionarioDetalhePage";
+import EditarFuncionarioPage from "./pages/funcionarios/EditarFuncionarioPage";
+import NovoFuncionarioPage from "./pages/funcionarios/NovoFuncionarioPage";
+import DocumentosPage from "./pages/documentos/DocumentosPage";
 
 const App = () => {
   const { isLoading } = useContext(AuthContext);
@@ -23,7 +23,7 @@ const App = () => {
               path="/"
               element={
                 <PublicRoute>
-                  <Login />
+                  <LoginPage />
                 </PublicRoute>
               }
             />
@@ -31,7 +31,7 @@ const App = () => {
               path="/home"
               element={
                 <ProtectedRoute>
-                  <Home />
+                  <HomePage />
                 </ProtectedRoute>
               }
             />
@@ -39,7 +39,7 @@ const App = () => {
               path="/funcionarios"
               element={
                 <ProtectedRoute>
-                  <Funcionarios />
+                  <FuncionariosPage />
                 </ProtectedRoute>
               }
             />
@@ -47,7 +47,7 @@ const App = () => {
               path="/funcionarios/:id"
               element={
                 <ProtectedRoute>
-                  <VerFuncionario />
+                  <FuncionarioDetalhePage />
                 </ProtectedRoute>
               }
             />
@@ -55,7 +55,7 @@ const App = () => {
               path="/funcionarios/editar/:id"
               element={
                 <ProtectedRoute>
-                  <EditarFuncionario />
+                  <EditarFuncionarioPage />
                 </ProtectedRoute>
               }
             />
@@ -63,7 +63,7 @@ const App = () => {
               path="/funcionarios/salvar"
               element={
                 <ProtectedRoute>
-                  <SalvarFuncionario />
+                  <NovoFuncionarioPage />
                 </ProtectedRoute>
               }
             />
@@ -71,7 +71,7 @@ const App = () => {
               path="/documentos"
               element={
                 <ProtectedRoute>
-                  <Documentos />
+                  <DocumentosPage />
                 </ProtectedRoute>
               }
             />

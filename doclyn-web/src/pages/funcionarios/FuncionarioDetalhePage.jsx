@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
-import api from "../services/api";
-import { formatCPF } from "../utils/FormatCPF";
-import { convertAmericanDateToBrazilian } from "../utils/ConvertAmericanDateToBrazilian";
-import { formatPhoneNumber } from "../utils/FormatPhoneNumber";
+import Sidebar from "../../components/Sidebar";
+import api from "../../services/api";
+import { formatCPF } from "../../utils/FormatCPF";
+import { convertAmericanDateToBrazilian } from "../../utils/ConvertAmericanDateToBrazilian";
+import { formatPhoneNumber } from "../../utils/FormatPhoneNumber";
 
-const VerFuncionario = () => {
+const FuncionarioDetalhePage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [funcionario, setFuncionario] = useState(null);
@@ -98,4 +98,4 @@ const VerFuncionario = () => {
   );
 };
 
-export default VerFuncionario;
+export default FuncionarioDetalhePage;

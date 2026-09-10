@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../../components/Sidebar";
 import { useNavigate } from "react-router-dom";
-import api from "../services/api";
+import api from "../../services/api";
 import { VscError } from "react-icons/vsc";
 import { GiConfirmed } from "react-icons/gi";
-import { CargoSelect } from "../components/CargoSelect";
-import { StatusSelect } from "../components/StatusSelect";
+import { CargoSelect } from "../../components/CargoSelect";
+import { StatusSelect } from "../../components/StatusSelect";
 import { PatternFormat } from "react-number-format";
-import { convertBrazilianDateToAmerican } from "../utils/ConvertBrazilianDateToAmerican";
+import { convertBrazilianDateToAmerican } from "../../utils/ConvertBrazilianDateToAmerican";
 
-const SalvarFuncionario = () => {
+const NovoFuncionarioPage = () => {
   const navigate = useNavigate();
 
   const [nome, setNome] = useState("");
@@ -228,4 +228,4 @@ const SalvarFuncionario = () => {
   );
 };
 
-export default SalvarFuncionario;
+export default NovoFuncionarioPage;

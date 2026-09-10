@@ -1,8 +1,8 @@
 import React from "react";
 
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../../components/Sidebar";
 
-const Home = () => {
+const HomePage = () => {
   return (
     <Sidebar activeMenu={"home"}>
       <div id="main">
@@ -12,4 +12,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
