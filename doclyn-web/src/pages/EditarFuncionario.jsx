@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import api from "../services/api";
 import { VscError } from "react-icons/vsc";
 import { GiConfirmed } from "react-icons/gi";
-import { convertBrazilianDateToAmerican } from "../utils/ConvertBrazillianDateToAmerican";
+import { convertBrazilianDateToAmerican } from "../utils/ConvertBrazilianDateToAmerican";
 import { CargoSelect } from "../components/CargoSelect";
 import { StatusSelect } from "../components/StatusSelect";
 import { PatternFormat } from "react-number-format";

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import api from "../services/api";
+import { formatCPF } from "../utils/FormatCPF";
+import { convertAmericanDateToBrazilian } from "../utils/ConvertAmericanDateToBrazilian";
+import { formatPhoneNumber } from "../utils/FormatPhoneNumber";
 
 const VerFuncionario = () => {
   const { id } = useParams();
@@ -59,12 +62,12 @@ const VerFuncionario = () => {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-0">
               <div className="flex flex-col">
                 <span className="font-bold">CPF:</span>
-                <span> {funcionario.cpf}</span>
+                <span> {formatCPF(funcionario.cpf)}</span>
               </div>
 
               <div className="flex flex-col">
                 <span className="font-bold"> Data de Nascimento:</span>
-                {funcionario.dataNascimento}
+                {convertAmericanDateToBrazilian(funcionario.dataNascimento)}
               </div>
             </div>
 
@@ -76,14 +79,16 @@ const VerFuncionario = () => {
 
               <div className="flex flex-col">
                 <span className="font-bold"> Telefone:</span>
-                {funcionario.telefone}
+                {formatPhoneNumber(funcionario.telefone)}
               </div>
             </div>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-0">
               <div className="flex flex-col">
                 <span className="font-bold">Data de Admissão:</span>
-                <span> {funcionario.dataAdmissao}</span>
+                <span>
+                  {convertAmericanDateToBrazilian(funcionario.dataAdmissao)}
+                </span>
               </div>
             </div>
           </div>

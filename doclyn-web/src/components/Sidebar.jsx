@@ -1,8 +1,9 @@
 import React from "react";
+
 import Logo from "/assets/logo.png";
-import { FaUser } from "react-icons/fa";
-import { FaFile } from "react-icons/fa";
-import { FaHome } from "react-icons/fa";
+
+import { FaUser, FaFile, FaHome } from "react-icons/fa";
+
 import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ children, activeMenu }) => {

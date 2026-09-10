@@ -4,6 +4,8 @@ import { FaPencilAlt, FaRegEye, FaRegTrashAlt } from "react-icons/fa";
 import api from "../services/api";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { convertAmericanDateToBrazilian } from "../utils/ConvertAmericanDateToBrazilian";
+import { formatCPF } from "../utils/FormatCPF";
 
 const Funcionarios = () => {
   const navigate = useNavigate();
@@ -61,8 +63,12 @@ const Funcionarios = () => {
                       <th>{funcionario.id}</th>
                       <td>{funcionario.nome}</td>
                       <td>{funcionario.cargo}</td>
-                      <td>{funcionario.cpf}</td>
-                      <td>{funcionario.dataAdmissao}</td>
+                      <td>{formatCPF(funcionario.cpf)}</td>
+                      <td>
+                        {convertAmericanDateToBrazilian(
+                          funcionario.dataAdmissao,
+                        )}
+                      </td>
                       <td>{funcionario.status}</td>
                       <td>
                         <div className="flex gap-2">

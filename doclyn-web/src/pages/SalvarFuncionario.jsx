@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import { VscError } from "react-icons/vsc";
 import { GiConfirmed } from "react-icons/gi";
-import { convertBrazilianDateToAmerican } from "../utils/ConvertBrazillianDateToAmerican";
 import { CargoSelect } from "../components/CargoSelect";
 import { StatusSelect } from "../components/StatusSelect";
 import { PatternFormat } from "react-number-format";
+import { convertBrazilianDateToAmerican } from "../utils/ConvertBrazilianDateToAmerican";
 
 const SalvarFuncionario = () => {
   const navigate = useNavigate();
