@@ -18,8 +18,11 @@ public class FuncionarioController {
     private FuncionarioService service;
 
     @GetMapping
-    public ResponseEntity<List<Funcionario>> findAll() {
-        return ResponseEntity.ok(service.findAll());
+    public ResponseEntity<List<Funcionario>> findAll(
+            @RequestParam(defaultValue = "id") String sortField,
+            @RequestParam(defaultValue = "asc") String sortDirection
+    ) {
+        return ResponseEntity.ok(service.findAll(sortField, sortDirection));
     }
 
     @GetMapping("/{id}")
