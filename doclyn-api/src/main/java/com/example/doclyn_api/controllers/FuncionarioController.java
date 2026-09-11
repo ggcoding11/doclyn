@@ -1,8 +1,9 @@
 package com.example.doclyn_api.controllers;
 
-import com.example.doclyn_api.dtos.FuncionarioDTO;
+import com.example.doclyn_api.dtos.FuncionarioRequestDTO;
 import com.example.doclyn_api.models.Funcionario;
 import com.example.doclyn_api.services.FuncionarioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,8 +32,8 @@ public class FuncionarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Funcionario> save(@RequestBody Funcionario funcionario) {
-        Funcionario request = service.save(funcionario);
+    public ResponseEntity<Funcionario> save(@RequestBody @Valid FuncionarioRequestDTO dto) {
+        Funcionario request = service.save(dto);
 
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -43,7 +44,7 @@ public class FuncionarioController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Funcionario> updateById(
-            @PathVariable("id") Long id, @RequestBody FuncionarioDTO funcionarioNovo
+            @PathVariable("id") Long id, @RequestBody FuncionarioRequestDTO funcionarioNovo
     ) {
         return ResponseEntity.ok(service.updateById(id, funcionarioNovo));
     }

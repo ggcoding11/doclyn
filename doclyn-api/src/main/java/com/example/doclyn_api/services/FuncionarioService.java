@@ -1,6 +1,6 @@
 package com.example.doclyn_api.services;
 
-import com.example.doclyn_api.dtos.FuncionarioDTO;
+import com.example.doclyn_api.dtos.FuncionarioRequestDTO;
 import com.example.doclyn_api.exceptions.ResourceNotFound;
 import com.example.doclyn_api.models.Funcionario;
 import com.example.doclyn_api.repositories.FuncionarioRepository;
@@ -31,8 +31,8 @@ public class FuncionarioService {
         ));
     }
 
-    public Funcionario save(Funcionario funcionario) {
-        return funcionarioRepository.save(funcionario);
+    public Funcionario save(FuncionarioRequestDTO dto) {
+        return funcionarioRepository.save(toEntity(dto));
     }
 
     public void deleteById(Long id) {
@@ -43,7 +43,7 @@ public class FuncionarioService {
         funcionarioRepository.deleteById(id);
     }
 
-    public Funcionario updateById(Long id, FuncionarioDTO dto) {
+    public Funcionario updateById(Long id, FuncionarioRequestDTO dto) {
         Funcionario funcionarioAntigo = findById(id);
 
         funcionarioAntigo.setNome(dto.nome());
@@ -56,5 +56,18 @@ public class FuncionarioService {
         funcionarioAntigo.setStatus(dto.status());
 
         return funcionarioRepository.save(funcionarioAntigo);
+    }
+
+    public Funcionario toEntity(FuncionarioRequestDTO dto) {
+        return new Funcionario(
+                dto.nome(),
+                dto.cpf(),
+                dto.telefone(),
+                dto.email(),
+                dto.dataNascimento(),
+                dto.dataAdmissao(),
+                dto.cargo(),
+                dto.status()
+        );
     }
 }
