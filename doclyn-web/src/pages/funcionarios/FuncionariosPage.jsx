@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import { FaPencilAlt, FaRegEye, FaRegTrashAlt } from "react-icons/fa";
 import { BiSortAlt2 } from "react-icons/bi";
+import { BsSortDown, BsSortDownAlt } from "react-icons/bs";
 import api from "../../services/api";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -9,29 +10,87 @@ import { convertAmericanDateToBrazilian } from "../../utils/ConvertAmericanDateT
 import { formatCPF } from "../../utils/FormatCPF";
 
 const funcionarioTableFields = [
-  "#",
-  "Nome",
-  "Cargo",
-  "CPF",
-  "Data de Admissão",
-  "Status",
-  "Ações",
+  {
+    id: 0,
+    fieldName: "id",
+    label: "#",
+  },
+  {
+    id: 1,
+    fieldName: "nome",
+    label: "Nome",
+  },
+  {
+    id: 2,
+    fieldName: "cargo",
+    label: "Cargo",
+  },
+  {
+    id: 3,
+    fieldName: "cpf",
+    label: "CPF",
+  },
+  {
+    id: 4,
+    fieldName: "dataAdmissao",
+    label: "Data de Admissão",
+  },
+  {
+    id: 5,
+    fieldName: "status",
+    label: "Status",
+  },
 ];
 
 const FuncionariosPage = () => {
   const navigate = useNavigate();
 
   const [funcionarios, setFuncionarios] = useState(null);
+  const [sortField, setSortField] = useState("");
+  const [sortDirection, setSortDirection] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await api.get("/funcionarios");
+      const response = await api.get(
+        `/funcionarios?sortField=${sortField}&sortDirection=${sortDirection}`,
+      );
 
       setFuncionarios(response.data);
     };
 
     fetchData();
-  }, []);
+  }, [sortField, sortDirection]);
+
+  const SortButton = ({ field }) => {
+    const sortByField = () => {
+      setSortField(field);
+
+      if (sortDirection === "desc") {
+        setSortDirection("asc");
+      } else {
+        setSortDirection("desc");
+      }
+    };
+
+    return sortField === field ? (
+      sortDirection === "desc" ? (
+        <BsSortDown
+          className="text-xl cursor-pointer"
+          onClick={() => sortByField(field)}
+        />
+      ) : (
+        <BsSortDownAlt
+          className="text-xl cursor-pointer"
+          onClick={() => sortByField(field)}
+        />
+      )
+    ) : (
+      <BiSortAlt2
+        className="text-xl cursor-pointer"
+        onClick={() => sortByField(field)}
+      />
+    );
+  };
 
   return (
     <Sidebar activeMenu={"funcionarios"}>
@@ -59,13 +118,15 @@ const FuncionariosPage = () => {
               <thead>
                 <tr>
                   {funcionarioTableFields.map((field) => (
-                    <th>
+                    <th key={field.id}>
                       <div className="flex items-center gap-2">
-                        <span>{field}</span>
-                        <BiSortAlt2 className="text-xl" />
+                        <span>{field.label}</span>
+                        <SortButton field={field.fieldName} />
                       </div>
                     </th>
                   ))}
+
+                  <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
