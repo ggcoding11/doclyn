@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import { useNavigate, useParams } from "react-router-dom";
-import api from "../../services/api";
-import { VscError } from "react-icons/vsc";
-import { GiConfirmed } from "react-icons/gi";
-import { convertBrazilianDateToAmerican } from "../../utils/ConvertBrazilianDateToAmerican";
 import { CargoSelect } from "../../components/CargoSelect";
 import { StatusSelect } from "../../components/StatusSelect";
 import { PatternFormat } from "react-number-format";
+import ModalError from "../../components/ModalError";
+import ModalSuccess from "../../components/ModalSuccess";
+import api from "../../services/api";
 
 const EditarFuncionarioPage = () => {
   const { id } = useParams();
@@ -23,6 +22,8 @@ const EditarFuncionarioPage = () => {
   const [status, setStatus] = useState("");
 
   const [funcionario, setFuncionario] = useState(null);
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,8 +47,19 @@ const EditarFuncionarioPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setDataNascimento(convertBrazilianDateToAmerican(dataNascimento));
-    setDataAdmissao(convertBrazilianDateToAmerican(dataAdmissao));
+    const hoje = new Date().toLocaleDateString("en-CA");
+
+    if (dataNascimento >= hoje) {
+      openModalError("A data de nascimento deve ser anterior à data de hoje!");
+      return;
+    }
+
+    if (dataAdmissao > hoje) {
+      openModalError(
+        "A data de admissão deve ser mais antiga ou igual a data de hoje!",
+      );
+      return;
+    }
 
     const payload = {
       nome,
@@ -74,10 +86,11 @@ const EditarFuncionarioPage = () => {
     document.getElementById("modal-success").showModal();
   };
 
-  const openModalError = () => {
+  const openModalError = (message) => {
     document.getElementById("modal-error").showModal();
-  };
 
+    setErrorMessage(message);
+  };
   return (
     <Sidebar activeMenu={"funcionarios"}>
       <div className="px-4 py-2 flex flex-col gap-4" id="main">
@@ -118,6 +131,7 @@ const EditarFuncionarioPage = () => {
                   id="cpf"
                   className="input w-full"
                   format="###.###.###-##"
+                  pattern="^\d{3}\.\d{3}\.\d{3}-\d{2}$"
                   value={cpf}
                   onValueChange={(values) => {
                     setCpf(values.value);
@@ -136,6 +150,7 @@ const EditarFuncionarioPage = () => {
                   id="telefone"
                   className="input w-full"
                   format="(##) #####-####"
+                  pattern="^\(\d{2}\)\s\d{5}-\d{4}$"
                   value={telefone}
                   onValueChange={(values) => {
                     setTelefone(values.value);
@@ -215,37 +230,16 @@ const EditarFuncionarioPage = () => {
         </div>
       </div>
 
-      <dialog id="modal-success" className="modal">
-        <div className="modal-box flex flex-col items-center justify-center">
-          <GiConfirmed className="text-7xl mb-2" />
+      <ModalSuccess
+        title={"Dados salvos!"}
+        subtitle={"Os dados do funcionário foram salvos com sucesso!"}
+        onClose={() => navigate("/funcionarios")}
+      />
 
-          <h3 className="font-bold text-xl">Dados atualizados!</h3>
-          <p className="py-2 text-xl text-center">
-            Os dados do funcionário foram alterados com sucesso!
-          </p>
-          <div className="modal-action">
-            <form method="dialog">
-              <button className="btn">Fechar</button>
-            </form>
-          </div>
-        </div>
-      </dialog>
-
-      <dialog id="modal-error" className="modal">
-        <div className="modal-box flex flex-col items-center justify-center">
-          <VscError className="text-7xl mb-2" />
-
-          <h3 className="font-bold text-xl">Erro ao atualizar dados!</h3>
-          <p className="py-2 text-xl text-center">
-            Ocorreu um erro ao atualizar os dados do funcionário.
-          </p>
-          <div className="modal-action">
-            <form method="dialog">
-              <button className="btn">Fechar</button>
-            </form>
-          </div>
-        </div>
-      </dialog>
+      <ModalError
+        title={"Erro ao salvar funcionário!"}
+        subtitle={errorMessage}
+      />
     </Sidebar>
   );
 };
