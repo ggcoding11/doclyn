@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
 import api from "../../services/api";
 import { VscError } from "react-icons/vsc";
 import { GiConfirmed } from "react-icons/gi";
 import { CargoSelect } from "../../components/CargoSelect";
 import { StatusSelect } from "../../components/StatusSelect";
 import { PatternFormat } from "react-number-format";
-import { convertBrazilianDateToAmerican } from "../../utils/ConvertBrazilianDateToAmerican";
+import ModalError from "../../components/ModalError";
+import ModalSuccess from "../../components/ModalSuccess";
 
 const NovoFuncionarioPage = () => {
   const navigate = useNavigate();
@@ -21,11 +22,22 @@ const NovoFuncionarioPage = () => {
   const [cargo, setCargo] = useState("");
   const [status, setStatus] = useState("");
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setDataNascimento(convertBrazilianDateToAmerican(dataNascimento));
-    setDataAdmissao(convertBrazilianDateToAmerican(dataAdmissao));
+    const hoje = new Date().toLocaleDateString("en-CA");
+
+    if (dataNascimento >= hoje) {
+      openModalError("A data de nascimento deve ser anterior à data de hoje!");
+      return;
+    }
+
+    if (dataAdmissao > hoje) {
+      openModalError("A data de admissão deve ser mais antiga ou igual a data de hoje!");
+      return;
+    }
 
     const payload = {
       nome,
@@ -39,12 +51,12 @@ const NovoFuncionarioPage = () => {
     };
 
     try {
-      const response = await api.post(`/funcionarios`, payload);
+      await api.post(`/funcionarios`, payload);
       openModalSuccess();
     } catch (error) {
       console.log(error);
 
-      openModalError();
+      openModalError("Ocorreu um erro ao salvar o funcionário.");
     }
   };
 
@@ -52,8 +64,10 @@ const NovoFuncionarioPage = () => {
     document.getElementById("modal-success").showModal();
   };
 
-  const openModalError = () => {
+  const openModalError = (message) => {
     document.getElementById("modal-error").showModal();
+
+    setErrorMessage(message)
   };
 
   return (
@@ -95,6 +109,7 @@ const NovoFuncionarioPage = () => {
                 id="cpf"
                 className="input w-full"
                 format="###.###.###-##"
+                pattern="^\d{3}\.\d{3}\.\d{3}-\d{2}$"
                 value={cpf}
                 onValueChange={(values) => {
                   setCpf(values.value);
@@ -113,6 +128,7 @@ const NovoFuncionarioPage = () => {
                 id="telefone"
                 className="input w-full"
                 format="(##) #####-####"
+                pattern="^\(\d{2}\)\s\d{5}-\d{4}$"
                 value={telefone}
                 onValueChange={(values) => {
                   setTelefone(values.value);
@@ -191,39 +207,16 @@ const NovoFuncionarioPage = () => {
         </div>
       </div>
 
-      <dialog id="modal-success" className="modal">
-        <div className="modal-box flex flex-col items-center justify-center">
-          <GiConfirmed className="text-7xl mb-2" />
+      <ModalSuccess
+        title={"Dados salvos!"}
+        subtitle={"Os dados do funcionário foram salvos com sucesso!"}
+        onClose={() => navigate("/funcionarios")}
+      />
 
-          <h3 className="font-bold text-xl">Dados salvos!</h3>
-          <p className="py-2 text-xl text-center">
-            Os dados do funcionário foram salvos com sucesso!
-          </p>
-          <div className="modal-action">
-            <form method="dialog">
-              <button className="btn" onClick={() => navigate("/funcionarios")}>
-                Fechar
-              </button>
-            </form>
-          </div>
-        </div>
-      </dialog>
-
-      <dialog id="modal-error" className="modal">
-        <div className="modal-box flex flex-col items-center justify-center">
-          <VscError className="text-7xl mb-2" />
-
-          <h3 className="font-bold text-xl">Erro ao salvar dados!</h3>
-          <p className="py-2 text-xl text-center">
-            Ocorreu um erro ao salvar os dados do funcionário.
-          </p>
-          <div className="modal-action">
-            <form method="dialog">
-              <button className="btn">Fechar</button>
-            </form>
-          </div>
-        </div>
-      </dialog>
+      <ModalError
+        title={"Erro ao salvar funcionário!"}
+        subtitle={errorMessage}
+      />
     </Sidebar>
   );
 };
