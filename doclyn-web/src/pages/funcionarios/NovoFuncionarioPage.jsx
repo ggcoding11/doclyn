@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Sidebar from "../../components/Sidebar";
-import { data, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import api from "../../services/api";
-import { VscError } from "react-icons/vsc";
-import { GiConfirmed } from "react-icons/gi";
 import { CargoSelect } from "../../components/CargoSelect";
 import { StatusSelect } from "../../components/StatusSelect";
 import { PatternFormat } from "react-number-format";
@@ -35,7 +33,9 @@ const NovoFuncionarioPage = () => {
     }
 
     if (dataAdmissao > hoje) {
-      openModalError("A data de admissão deve ser mais antiga ou igual a data de hoje!");
+      openModalError(
+        "A data de admissão deve ser mais antiga ou igual a data de hoje!",
+      );
       return;
     }
 
@@ -67,7 +67,7 @@ const NovoFuncionarioPage = () => {
   const openModalError = (message) => {
     document.getElementById("modal-error").showModal();
 
-    setErrorMessage(message)
+    setErrorMessage(message);
   };
 
   return (
