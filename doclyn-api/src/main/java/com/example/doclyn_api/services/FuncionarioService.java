@@ -5,6 +5,9 @@ import com.example.doclyn_api.exceptions.ResourceNotFound;
 import com.example.doclyn_api.models.Funcionario;
 import com.example.doclyn_api.repositories.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +18,16 @@ public class FuncionarioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
-    public List<Funcionario> findAll(String sortField, String sortDirection) {
-        Sort sort = Sort.by(sortField);
+    public Page<Funcionario> findAll(String sortField, String sortDirection, int pageNumber, int pageSize) {
+        Sort sortConfiguration = Sort.by(sortField);
 
         if (sortDirection.equals("desc")) {
-            sort = sort.descending();
+            sortConfiguration = sortConfiguration.descending();
         }
 
-        return funcionarioRepository.findAll(sort);
+        Pageable pageConfiguration = PageRequest.of(pageNumber, pageSize, sortConfiguration);
+
+        return funcionarioRepository.findAll(pageConfiguration);
     }
 
     public Funcionario findById(Long id) {

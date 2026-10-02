@@ -5,12 +5,12 @@ import com.example.doclyn_api.models.Funcionario;
 import com.example.doclyn_api.services.FuncionarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping("/funcionarios")
@@ -19,11 +19,13 @@ public class FuncionarioController {
     private FuncionarioService service;
 
     @GetMapping
-    public ResponseEntity<List<Funcionario>> findAll(
+    public ResponseEntity<Page<Funcionario>> findAll(
             @RequestParam(defaultValue = "id") String sortField,
-            @RequestParam(defaultValue = "asc") String sortDirection
+            @RequestParam(defaultValue = "asc") String sortDirection,
+            @RequestParam(defaultValue = "0") int pageNumber,
+            @RequestParam(defaultValue = "10") int pageSize
     ) {
-        return ResponseEntity.ok(service.findAll(sortField, sortDirection));
+        return ResponseEntity.ok(service.findAll(sortField, sortDirection, pageNumber, pageSize));
     }
 
     @GetMapping("/{id}")

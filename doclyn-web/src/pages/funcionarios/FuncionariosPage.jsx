@@ -48,18 +48,22 @@ const FuncionariosPage = () => {
   const [funcionarios, setFuncionarios] = useState(null);
   const [sortField, setSortField] = useState("");
   const [sortDirection, setSortDirection] = useState("");
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await api.get(
-        `/funcionarios?sortField=${sortField}&sortDirection=${sortDirection}`,
+        `/funcionarios?sortField=${sortField}&sortDirection=${sortDirection}&pageNumber=${currentPage}`,
       );
 
-      setFuncionarios(response.data);
+      setTotalPages(response.data.totalPages);
+      setCurrentPage(response.data.number);
+      setFuncionarios(response.data.content);
     };
 
     fetchData();
-  }, [sortField, sortDirection]);
+  }, [sortField, sortDirection, currentPage]);
 
   const SortButton = ({ field }) => {
     const sortByField = () => {
@@ -92,6 +96,32 @@ const FuncionariosPage = () => {
     );
   };
 
+  const toPreviousPage = () => {
+    const firstPage = 0;
+    const previousPage = currentPage - 1;
+
+    if (previousPage < firstPage) {
+      return;
+    }
+
+    setCurrentPage(previousPage);
+  };
+
+  const toNextPage = () => {
+    const finalPage = totalPages - 1;
+    const nextPage = currentPage + 1;
+
+    if (nextPage > finalPage) {
+      return;
+    }
+
+    setCurrentPage(nextPage);
+  };
+
+  const toResetPage = () => {
+    setCurrentPage(0)
+  }
+
   return (
     <Sidebar activeMenu={"funcionarios"}>
       <div className="min-h-screen px-4 py-2 gap-2" id="main">
@@ -113,25 +143,25 @@ const FuncionariosPage = () => {
             </div>
           </div>
 
-          <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
-            <table className="table">
-              <thead>
-                <tr>
-                  {funcionarioTableFields.map((field) => (
-                    <th key={field.id}>
-                      <div className="flex items-center gap-2">
-                        <span>{field.label}</span>
-                        <SortButton field={field.fieldName} />
-                      </div>
-                    </th>
-                  ))}
+          <div className="min-h-screen flex flex-col justify-between items-center gap-6">
+            <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 w-full">
+              <table className="table">
+                <thead>
+                  <tr>
+                    {funcionarioTableFields.map((field) => (
+                      <th key={field.id}>
+                        <div className="flex items-center gap-2">
+                          <span>{field.label}</span>
+                          <SortButton field={field.fieldName} />
+                        </div>
+                      </th>
+                    ))}
 
-                  <th>Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                {funcionarios &&
-                  funcionarios.map((funcionario) => (
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {funcionarios?.map((funcionario) => (
                     <tr key={funcionario.id}>
                       <th>{funcionario.id}</th>
                       <td>{funcionario.nome}</td>
@@ -168,8 +198,19 @@ const FuncionariosPage = () => {
                       </td>
                     </tr>
                   ))}
-              </tbody>
-            </table>
+                </tbody>
+              </table>
+            </div>
+
+            <div className="join">
+              <button onClick={toPreviousPage} className="join-item btn">«</button>
+              <button onClick={toResetPage} className="join-item btn">
+                Página {currentPage + 1}
+              </button>
+              <button onClick={toNextPage} className="join-item btn">
+                »
+              </button>
+            </div>
           </div>
         </div>
       </div>
