@@ -50,15 +50,21 @@ const FuncionariosPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
 
+  const [idToBeDeleted, setIdToBeDeleted] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
-      const response = await api.get(
-        `/funcionarios?sortField=${sortField}&sortDirection=${sortDirection}&pageNumber=${currentPage}`,
-      );
+      try {
+        const response = await api.get(
+          `/funcionarios?sortField=${sortField}&sortDirection=${sortDirection}&pageNumber=${currentPage}`,
+        );
 
-      setTotalPages(response.data.totalPages);
-      setCurrentPage(response.data.number);
-      setFuncionarios(response.data.content);
+        setTotalPages(response.data.totalPages);
+        setCurrentPage(response.data.number);
+        setFuncionarios(response.data.content);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchData();
@@ -118,8 +124,20 @@ const FuncionariosPage = () => {
   };
 
   const toResetPage = () => {
-    setCurrentPage(0)
-  }
+    setCurrentPage(0);
+  };
+
+  const openModalDelete = () => {
+    document.getElementById("modal-delete").showModal();
+  };
+
+  const handleDelete = async () => {
+    try {
+      const response = await api.delete(`/funcionarios/${idToBeDeleted}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Sidebar activeMenu={"funcionarios"}>
@@ -190,7 +208,13 @@ const FuncionariosPage = () => {
                           >
                             <FaRegEye />
                           </button>
-                          <button className="btn btn-error">
+                          <button
+                            onClick={() => {
+                              setIdToBeDeleted(funcionario.id);
+                              openModalDelete();
+                            }}
+                            className="btn btn-error"
+                          >
                             <FaRegTrashAlt />
                           </button>
                         </div>
@@ -202,7 +226,9 @@ const FuncionariosPage = () => {
             </div>
 
             <div className="join">
-              <button onClick={toPreviousPage} className="join-item btn">«</button>
+              <button onClick={toPreviousPage} className="join-item btn">
+                «
+              </button>
               <button onClick={toResetPage} className="join-item btn">
                 Página {currentPage + 1}
               </button>
@@ -213,6 +239,28 @@ const FuncionariosPage = () => {
           </div>
         </div>
       </div>
+
+      <dialog id="modal-delete" className="modal">
+        <div className="modal-box flex flex-col items-center justify-center">
+          <h3 className="text-center font-bold text-lg">
+            Tem certeza que deseja remover o funcionário?
+          </h3>
+          <p className="text-center text-lg py-2">
+            Essa ação não pode ser desfeita!
+          </p>
+          <div className="modal-action">
+            <form method="dialog">
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                ✕
+              </button>
+              <div className="flex gap-4">
+                <button onClick={handleDelete} className="btn btn-error">Remover</button>
+                <button className="btn">Fechar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </Sidebar>
   );
 };
