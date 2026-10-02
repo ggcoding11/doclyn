@@ -4,7 +4,6 @@ import { FaPencilAlt, FaRegEye, FaRegTrashAlt } from "react-icons/fa";
 import { BiSortAlt2 } from "react-icons/bi";
 import { BsSortDown, BsSortDownAlt } from "react-icons/bs";
 import api from "../../services/api";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { convertAmericanDateToBrazilian } from "../../utils/ConvertAmericanDateToBrazilian";
 import { formatCPF } from "../../utils/FormatCPF";
@@ -133,7 +132,7 @@ const FuncionariosPage = () => {
               <h3>Gerencie todos os funcionários da empresa</h3>
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-end">
               <button
                 className="btn w-30 sm:w-80"
                 onClick={() => navigate("/funcionarios/salvar")}
