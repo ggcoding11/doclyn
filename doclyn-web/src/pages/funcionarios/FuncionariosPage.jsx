@@ -7,6 +7,8 @@ import api from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { convertAmericanDateToBrazilian } from "../../utils/ConvertAmericanDateToBrazilian";
 import { formatCPF } from "../../utils/FormatCPF";
+import ModalSuccess from "../../components/ModalSuccess";
+import { openModalSuccess } from "../../utils/OpenModalSuccess";
 
 const funcionarioTableFields = [
   {
@@ -52,6 +54,8 @@ const FuncionariosPage = () => {
 
   const [idToBeDeleted, setIdToBeDeleted] = useState(null);
 
+  const [reload, setReload] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -68,7 +72,7 @@ const FuncionariosPage = () => {
     };
 
     fetchData();
-  }, [sortField, sortDirection, currentPage]);
+  }, [sortField, sortDirection, currentPage, reload]);
 
   const SortButton = ({ field }) => {
     const sortByField = () => {
@@ -134,6 +138,10 @@ const FuncionariosPage = () => {
   const handleDelete = async () => {
     try {
       const response = await api.delete(`/funcionarios/${idToBeDeleted}`);
+
+      openModalSuccess();
+
+      setReload(response);
     } catch (error) {
       console.log(error);
     }
@@ -254,13 +262,20 @@ const FuncionariosPage = () => {
                 ✕
               </button>
               <div className="flex gap-4">
-                <button onClick={handleDelete} className="btn btn-error">Remover</button>
+                <button onClick={handleDelete} className="btn btn-error">
+                  Remover
+                </button>
                 <button className="btn">Fechar</button>
               </div>
             </form>
           </div>
         </div>
       </dialog>
+
+      <ModalSuccess
+        title={"Operação foi concluída"}
+        subtitle={"O funcionário foi removido com sucesso!"}
+      />
     </Sidebar>
   );
 };
