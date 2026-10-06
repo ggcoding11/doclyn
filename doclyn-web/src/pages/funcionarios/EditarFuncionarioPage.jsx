@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import { useNavigate, useParams } from "react-router-dom";
-import ModalSuccess from "../../components/ModalSuccess";
 import api from "../../services/api";
 import FuncionarioForm from "../../components/FuncionarioForm";
 import { VscError } from "react-icons/vsc";
+import { GiConfirmed } from "react-icons/gi";
 
 const EditarFuncionarioPage = () => {
   const { id } = useParams();
@@ -48,11 +48,23 @@ const EditarFuncionarioPage = () => {
         </div>
       </div>
 
-      <ModalSuccess
-        title={"Dados salvos!"}
-        subtitle={"Os dados do funcionário foram salvos com sucesso!"}
-        onClose={() => navigate("/funcionarios")}
-      />
+      <dialog id="modal-success" className="modal">
+        <div className="modal-box flex flex-col items-center justify-center">
+          <GiConfirmed className="text-7xl mb-2" />
+
+          <h3 className="font-bold text-xl">{"Dados atualizados!"}</h3>
+          <p className="py-2 text-xl text-center">
+            {"Os dados do funcionário foram atualizados com sucesso!"}
+          </p>
+          <div className="modal-action">
+            <form method="dialog">
+              <button onClick={() => navigate("/funcionarios")} className="btn">
+                Fechar
+              </button>
+            </form>
+          </div>
+        </div>
+      </dialog>
 
       <dialog id="modal-error" className="modal">
         <div className="modal-box flex flex-col items-center justify-center">

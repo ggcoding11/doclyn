@@ -3,12 +3,12 @@ import Sidebar from "../../components/Sidebar";
 import { FaPencilAlt, FaRegEye, FaRegTrashAlt } from "react-icons/fa";
 import { BiSortAlt2 } from "react-icons/bi";
 import { BsSortDown, BsSortDownAlt } from "react-icons/bs";
+import { GiConfirmed } from "react-icons/gi";
+import { VscError } from "react-icons/vsc";
 import api from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { convertAmericanDateToBrazilian } from "../../utils/ConvertAmericanDateToBrazilian";
 import { formatCPF } from "../../utils/FormatCPF";
-import ModalSuccess from "../../components/ModalSuccess";
-import { openModalSuccess } from "../../utils/OpenModalSuccess";
 
 const funcionarioTableFields = [
   {
@@ -55,6 +55,8 @@ const FuncionariosPage = () => {
   const [idToBeDeleted, setIdToBeDeleted] = useState(null);
 
   const [reload, setReload] = useState(null);
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -135,15 +137,23 @@ const FuncionariosPage = () => {
     document.getElementById("modal-delete").showModal();
   };
 
+  const openModalSuccess = () => {
+    document.getElementById("modal-success").showModal();
+  };
+
   const handleDelete = async () => {
     try {
       const response = await api.delete(`/funcionarios/${idToBeDeleted}`);
 
       openModalSuccess();
 
+      console.log("Atualizou!");
+
       setReload(response);
     } catch (error) {
       console.log(error);
+
+      openModalError("Ocorreu um erro ao remover o funcionário.");
     }
   };
 
@@ -272,10 +282,37 @@ const FuncionariosPage = () => {
         </div>
       </dialog>
 
-      <ModalSuccess
-        title={"Operação foi concluída"}
-        subtitle={"O funcionário foi removido com sucesso!"}
-      />
+      <dialog id="modal-success" className="modal">
+        <div className="modal-box flex flex-col items-center justify-center">
+          <GiConfirmed className="text-7xl mb-2" />
+
+          <h3 className="font-bold text-xl">{"Operação foi concluída"}</h3>
+          <p className="py-2 text-xl text-center">
+            {"O funcionário foi removido com sucesso!"}
+          </p>
+          <div className="modal-action">
+            <form method="dialog">
+              <button className="btn">Fechar</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+
+      <dialog id="modal-error" className="modal">
+        <div className="modal-box flex flex-col items-center justify-center">
+          <VscError className="text-7xl mb-2" />
+
+          <h3 className="font-bold text-xl">
+            {"Erro ao remover funcionário!"}
+          </h3>
+          <p className="py-2 text-xl text-center">{errorMessage}</p>
+          <div className="modal-action">
+            <form method="dialog">
+              <button className="btn">Fechar</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </Sidebar>
   );
 };

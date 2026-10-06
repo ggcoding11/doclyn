@@ -3,7 +3,6 @@ import { CargoSelect } from "./CargoSelect";
 import { StatusSelect } from "./StatusSelect";
 import { PatternFormat } from "react-number-format";
 import api from "../services/api";
-import { openModalSuccess } from "../utils/OpenModalSuccess";
 
 const FuncionarioForm = ({ funcionario, id, setErrorMessage }) => {
   const [nome, setNome] = useState(funcionario?.nome || "");
@@ -59,6 +58,10 @@ const FuncionarioForm = ({ funcionario, id, setErrorMessage }) => {
 
       openModalError("Ocorreu um erro ao salvar o funcionário.");
     }
+  };
+
+  const openModalSuccess = () => {
+    document.getElementById("modal-success").showModal();
   };
 
   const openModalError = (message) => {
