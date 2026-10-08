@@ -20,12 +20,13 @@ public class FuncionarioController {
 
     @GetMapping
     public ResponseEntity<Page<Funcionario>> findAll(
+            @RequestParam(required = false) String searchParam,
             @RequestParam(defaultValue = "id") String sortField,
             @RequestParam(defaultValue = "asc") String sortDirection,
             @RequestParam(defaultValue = "0") int pageNumber,
-            @RequestParam(defaultValue = "10") int pageSize
+            @RequestParam(defaultValue = "20") int pageSize
     ) {
-        return ResponseEntity.ok(service.findAll(sortField, sortDirection, pageNumber, pageSize));
+        return ResponseEntity.ok(service.findAll(searchParam, sortField, sortDirection, pageNumber, pageSize));
     }
 
     @GetMapping("/{id}")

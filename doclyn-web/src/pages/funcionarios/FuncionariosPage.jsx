@@ -51,6 +51,7 @@ const FuncionariosPage = () => {
   const [sortDirection, setSortDirection] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const [searchParam, setSearchParam] = useState("");
 
   const [idToBeDeleted, setIdToBeDeleted] = useState(null);
 
@@ -62,7 +63,7 @@ const FuncionariosPage = () => {
     const fetchData = async () => {
       try {
         const response = await api.get(
-          `/funcionarios?sortField=${sortField}&sortDirection=${sortDirection}&pageNumber=${currentPage}`,
+          `/funcionarios?searchParam=${searchParam}&sortField=${sortField}&sortDirection=${sortDirection}&pageNumber=${currentPage}`,
         );
 
         setTotalPages(response.data.totalPages);
@@ -74,7 +75,7 @@ const FuncionariosPage = () => {
     };
 
     fetchData();
-  }, [sortField, sortDirection, currentPage, reload]);
+  }, [searchParam, sortField, sortDirection, currentPage, reload]);
 
   const SortButton = ({ field }) => {
     const sortByField = () => {
@@ -162,20 +163,47 @@ const FuncionariosPage = () => {
       <div className="min-h-screen px-4 py-2 gap-2" id="main">
         <div className="flex flex-col gap-4">
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-0 items-center">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col items-center sm:items-start gap-2">
               <h1 className="text-xl font-semibold">Funcionários</h1>
 
               <h3>Gerencie todos os funcionários da empresa</h3>
             </div>
 
-            <div className="flex justify-end">
+            <div className="flex justify-center">
               <button
-                className="btn w-30 sm:w-80"
+                className="btn w-60"
                 onClick={() => navigate("/funcionarios/salvar")}
               >
                 Criar novo
               </button>
             </div>
+          </div>
+
+          <div className="flex justify-center w-full">
+            <label className="input">
+              <svg
+                className="h-[1em] opacity-50"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <g
+                  strokeLinejoin="round"
+                  strokeLinecap="round"
+                  strokeWidth="2.5"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.3-4.3"></path>
+                </g>
+              </svg>
+              <input
+                type="search"
+                value={searchParam}
+                onChange={(e) => setSearchParam(e.target.value)}
+                placeholder="Pesquise pelo nome..."
+              />
+            </label>
           </div>
 
           <div className="min-h-screen flex flex-col justify-between items-center gap-6">

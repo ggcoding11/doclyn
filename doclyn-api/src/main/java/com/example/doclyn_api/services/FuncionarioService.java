@@ -18,7 +18,7 @@ public class FuncionarioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
-    public Page<Funcionario> findAll(String sortField, String sortDirection, int pageNumber, int pageSize) {
+    public Page<Funcionario> findAll(String searchParam, String sortField, String sortDirection, int pageNumber, int pageSize) {
         Sort sortConfiguration = Sort.by(sortField);
 
         if (sortDirection.equals("desc")) {
@@ -27,7 +27,11 @@ public class FuncionarioService {
 
         Pageable pageConfiguration = PageRequest.of(pageNumber, pageSize, sortConfiguration);
 
-        return funcionarioRepository.findAll(pageConfiguration);
+        if (searchParam == null || searchParam.isBlank()) {
+            return funcionarioRepository.findAll(pageConfiguration);
+        } else {
+            return funcionarioRepository.findByNomeContainingIgnoreCase(searchParam, pageConfiguration);
+        }
     }
 
     public Funcionario findById(Long id) {
