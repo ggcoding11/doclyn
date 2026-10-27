@@ -14,6 +14,7 @@ target/
 .sts4-cache
 
 ### Ignore production environment variable files ###
+src/main/resources/application-*.properties
 !**/src/main/resources/application-example.properties
 
 ### IntelliJ IDEA ###
