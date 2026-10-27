@@ -9,7 +9,6 @@ import FuncionariosPage from "./pages/funcionarios/FuncionariosPage";
 import FuncionarioDetalhePage from "./pages/funcionarios/FuncionarioDetalhePage";
 import EditarFuncionarioPage from "./pages/funcionarios/EditarFuncionarioPage";
 import NovoFuncionarioPage from "./pages/funcionarios/NovoFuncionarioPage";
-import DocumentosPage from "./pages/documentos/DocumentosPage";
 
 const App = () => {
   const { isLoading } = useContext(AuthContext);
@@ -64,14 +63,6 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <NovoFuncionarioPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/documentos"
-              element={
-                <ProtectedRoute>
-                  <DocumentosPage />
                 </ProtectedRoute>
               }
             />

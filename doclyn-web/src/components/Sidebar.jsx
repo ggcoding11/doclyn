@@ -21,13 +21,7 @@ const Sidebar = ({ children, activeMenu }) => {
       title: "Funcionários",
       icon: <FaUser />,
       routeName: "funcionarios",
-    },
-    {
-      id: 3,
-      title: "Documentos",
-      icon: <FaFile />,
-      routeName: "documentos",
-    },
+    }
   ];
 
   return (
