@@ -1,5 +1,7 @@
 # Doclyn
 
+<img width="1280" height="720" alt="Gravação-de-ecrã-2-_online-video-cutter com_-_1_" src="https://github.com/user-attachments/assets/841e9d30-3055-4673-8e17-dc5aab1d31d1" />
+
 Sistema web para gestão de funcionários. O projeto é um monorepo com duas aplicações:
 
 - **`doclyn-api`**: API REST em Spring Boot, com autenticação JWT e persistência em PostgreSQL.
